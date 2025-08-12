@@ -1,9 +1,11 @@
-import AA from "./components/AA";
+import Banner from "./components/Banner";
+import Header from "./components/Header";
 
 function App() {
   return (
     <main>
-      <AA />
+      <Header />
+      <Banner />
     </main>
   );
 }
