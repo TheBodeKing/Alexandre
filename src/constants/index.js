@@ -15,3 +15,5 @@ export const bannerListImg = [
   { img: santafeImg, id: 2 },
   { img: stillusImg, id: 3 },
 ];
+
+export const bannerBtnList = [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }];

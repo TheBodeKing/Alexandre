@@ -3,9 +3,9 @@ const Face = ({ atr }) => {
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 512 512"
-      xml:space="preserve"
+      xmlSpace="preserve"
       className={`${atr}`}
     >
       <g id="7935ec95c421cee6d86eb22ecd11b7e3">
