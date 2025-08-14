@@ -11,20 +11,14 @@ const Banner = () => {
   const txtPRef = useRef([]);
   const txtARef = useRef([]);
   const [ativoTxt, setAtivoTxt] = useState(true);
+  const [antN, setAntN] = useState(0);
 
-  const inOut = (antigo, novo) => {
+  const inOut = (antigo, novo, xa, xn) => {
     const tl = gsap.timeline({
       defaults: { duration: 0.6, ease: "power2.inOut" },
     });
-    tl.fromTo(antigo, { x: 0 }, { x: "-100%" });
-    tl.fromTo(novo, { x: "100%" }, { x: 0 }, "<");
-  };
-  const inOutRev = (antigo, novo) => {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.6, ease: "power2.inOut" },
-    });
-    tl.fromTo(antigo, { x: 0 }, { x: "100%" });
-    tl.fromTo(novo, { x: "-100%" }, { x: 0 }, "<");
+    tl.fromTo(antigo, { x: 0 }, { x: xa });
+    tl.fromTo(novo, { x: xn }, { x: 0 }, "<");
   };
 
   const txtInOut = (antigo, novo, dh, dp) => {
@@ -43,6 +37,16 @@ const Banner = () => {
     tl.fromTo(novo, { x: "100vw" }, { x: 0 }, "<");
   };
 
+  const runSlideTimer = () => {
+    const nIndex = (ativo + 1) % bannerListImg.length;
+    return setTimeout(() => {
+      prevRef.current = banRef.current[ativo];
+      setAntN(ativo);
+      setAtivoTxt(!ativoTxt);
+      setAtivo(nIndex);
+    }, 7000);
+  };
+
   useEffect(() => {
     if (!banRef.current[ativo]) return;
 
@@ -52,11 +56,21 @@ const Banner = () => {
           gsap.set(banRef.current[element.id], { x: "100%" });
         }
       });
-      setPrimeiro(!primeiro);
-      return;
+      setPrimeiro(false);
+      const timer = runSlideTimer();
+      return () => clearTimeout(timer);
     }
     if (!prevRef.current) return;
-    inOut(prevRef.current, banRef.current[ativo]);
+
+    if (ativo > antN) {
+      inOut(prevRef.current, banRef.current[ativo], "-100%", "100%");
+    } else {
+      inOut(prevRef.current, banRef.current[ativo], "100%", "-100%");
+    }
+
+    const timer = runSlideTimer();
+
+    return () => clearTimeout(timer);
   }, [ativo]);
 
   useEffect(() => {
@@ -117,6 +131,7 @@ const Banner = () => {
               ${id === ativo ? "border-2 border-white box-border" : ""} `}
             onClick={() => {
               prevRef.current = banRef.current[ativo];
+              setAntN(ativo);
               setAtivo(id);
               if (id !== ativo) {
                 setAtivoTxt(!ativoTxt);
