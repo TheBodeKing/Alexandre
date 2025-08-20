@@ -1,5 +1,4 @@
 import Banner from "./components/Banner";
-import DragA from "./components/DragA";
 import Header from "./components/Header";
 import Sobre from "./components/Sobre";
 
@@ -9,7 +8,6 @@ function App() {
       <Header />
       <Banner />
       <Sobre />
-      <DragA />
     </main>
   );
 }

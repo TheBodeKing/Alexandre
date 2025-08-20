@@ -149,7 +149,7 @@ const Banner = () => {
             ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
           </h1>
           <p
-            className="max-w-[48ch] text-left mt-[20px] mb-[10px] text-base/6 font-medium"
+            className="max-w-[48ch] text-left mt-[20px] mb-[10px] text-base font-medium"
             ref={(el) => (txtPRef.current[0] = el)}
           >
             Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
@@ -160,7 +160,7 @@ const Banner = () => {
           </p>
           <a
             ref={(el) => (txtARef.current[0] = el)}
-            className="inline-block py-2 px-7 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
+            className="inline-block py-2 px-6 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
          rounded-sm shadow-[0_0_22px_3px_rgba(241,106,65,1)] font-bold cursor-pointer"
             onMouseEnter={(e) =>
               gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 })

@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
-const DragA = () => {
+const DragB = ({ img, alt, classImg, classBox }) => {
   const conRef = useRef(null);
   const boxRef = useRef(null);
   const isClicked = useRef(false);
   const coords = useRef({
     offsetX: 0,
-    offsetY: 0,
   });
 
   useEffect(() => {
@@ -18,9 +17,7 @@ const DragA = () => {
 
     const centerBox = () => {
       const centerX = (con.clientWidth - box.clientWidth) / 2;
-      const centerY = (con.clientHeight - box.clientHeight) / 2;
       box.style.left = `${centerX}px`;
-      box.style.top = `${centerY}px`;
     };
 
     centerBox();
@@ -44,13 +41,10 @@ const DragA = () => {
     const onMouseMove = (e) => {
       if (!isClicked.current) return;
 
-      const deltaX = (e.clientX - cor.offsetX) * 0.2;
-      const deltaY = (e.clientY - cor.offsetY) * 0.2;
+      const deltaX = (e.clientX - cor.offsetX) * 0.15;
 
       const nextX = cor.startLeft + deltaX;
-      const nextY = cor.startTop + deltaY;
 
-      box.style.top = `${nextY}px`;
       box.style.left = `${nextX}px`;
     };
 
@@ -70,16 +64,19 @@ const DragA = () => {
   return (
     <div className="items-center flex m-auto">
       <div
-        className="w-[300px] h-[300px] relative border border-black overflow-hidden m-auto"
+        className={`${classBox} relative  overflow-hidden m-auto`}
         ref={conRef}
       >
-        <div
-          className="absolute bg-pink-600 h-[60px] w-[60px] cursor-pointer"
+        <img
           ref={boxRef}
-        ></div>
+          src={img}
+          alt={alt}
+          draggable={false}
+          className={classImg}
+        />
       </div>
     </div>
   );
 };
 
-export default DragA;
+export default DragB;
