@@ -11,6 +11,7 @@ import projetos from "/assets/images/projetos.png";
 import qualidade from "/assets/images/qualidade.png";
 import equipe from "/assets/images/equipe.png";
 import solucoes from "/assets/images/solucoes.png";
+import muse from "/assets/images/identidade-visual.jpg";
 
 export const logoImg = logo;
 export const cerqueiraImg = cerqueira;
@@ -25,3 +26,4 @@ export const projetosImg = projetos;
 export const qualidadeImg = qualidade;
 export const equipeImg = equipe;
 export const solucoesImg = solucoes;
+export const museImg = muse;

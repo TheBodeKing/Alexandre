@@ -1,3 +1,4 @@
+import { museImg } from "../utils";
 import Linha from "./Linha";
 
 const Servicos = () => {
@@ -16,6 +17,66 @@ const Servicos = () => {
         <h2 className="text-[22px] cinzaEscuro font-bold relative ">
           COMERCIAIS <Linha />
         </h2>
+        <div className="w-full z-10 relative cinzaEscuro box-border">
+          <div className="relative over overflow-hidden">
+            <div className="w-[1943px] relative touch-manipulation flex flex-row">
+              <div className="w-[277.5px] touch-pan-y ">
+                <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
+                  <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
+                    <div className="h-[156px] ">
+                      <img
+                        src={museImg}
+                        alt="muse"
+                        className="w-full rounded-sm"
+                      />
+                    </div>
+                    <div className="p-[20px] flex flex-col ">
+                      <h3 className="text-lg mb-[10px] font-medium ">
+                        DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="w-[277.5px] touch-pan-y ">
+                <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
+                  <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
+                    <div className="h-[156px] ">
+                      <img
+                        src={museImg}
+                        alt="muse"
+                        className="w-full rounded-sm"
+                      />
+                    </div>
+                    <div className="p-[20px] flex flex-col ">
+                      <h3 className="text-lg mb-[10px] font-medium ">
+                        DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="w-[277.5px] touch-pan-y ">
+                <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
+                  <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
+                    <div className="h-[156px] ">
+                      <img
+                        src={museImg}
+                        alt="muse"
+                        className="w-full rounded-sm"
+                      />
+                    </div>
+                    <div className="p-[20px] flex flex-col ">
+                      <h3 className="text-lg mb-[10px] font-medium ">
+                        DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
