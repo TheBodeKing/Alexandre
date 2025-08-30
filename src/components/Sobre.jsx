@@ -1,6 +1,7 @@
 import { sobreImg } from "../utils";
 import DragB from "./DragB";
 import Linha from "./Linha";
+import SButton from "./SButton";
 
 const Sobre = () => {
   return (
@@ -69,18 +70,8 @@ const Sobre = () => {
         </div>
       </div>
       <div className="mt-[50px] flex justify-center max-w-[100%] relative w-[100%] px-[15px] cinzaEscuro gap-[30px]">
-        <a
-          className="bg-white shadow-[0_0_20px_4px_rgba(0,0,0,0.4)] 
-        rounded-sm font-bold py-[8px] px-[25px] cursor-pointer"
-        >
-          VER SERVIÇOS
-        </a>
-        <a
-          className="rounded-sm shadow-[0_0_22px_3px_rgba(241,106,65,1)] font-bold cursor-pointer branco
-           py-[8px] px-[25px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]"
-        >
-          SOLICITAR ORÇAMENTO
-        </a>
+        <SButton txt={"VER SERVIÇOS"} color={"branco"} />
+        <SButton txt={"SOLICITAR ORÇAMENTO"} />
       </div>
     </section>
   );

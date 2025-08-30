@@ -37,8 +37,16 @@ body {
   color: #868686;
 }
 
+.cinzabg {
+  background-color: #868686;
+}
+
 .cinzaEscuro {
   color: #707070;
+}
+
+.cinzaEscurobg {
+  background-color: #707070;
 }
 
 .cinzaClaro {

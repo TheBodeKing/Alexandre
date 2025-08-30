@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { museImg } from "../utils";
+import {
+  coberturasImg,
+  envelopamentoImg,
+  fachadaImg,
+  impressaoImg,
+  luminososImg,
+  museImg,
+  totensImg,
+} from "../utils";
+import DragOwlCard from "./DragOwlCard";
 
 const DragOwl = () => {
   const conRef = useRef(null);
@@ -55,9 +64,12 @@ const DragOwl = () => {
       // calculate new position: current mouse delta + last saved box position
       const nextX = e.clientX - cor.startX + cor.lastX;
 
-      // limit movement between 0 and (container width - box width)
-      const minX = 0;
-      const maxX = Math.max(con.clientWidth - box.clientWidth, 0);
+      const conW = con.clientWidth;
+      const boxW = box.clientWidth;
+      // If box is wider, minX is negative and maxX is 0.
+      // If box is narrower, minX is 0 and maxX is positive.
+      const minX = Math.min(0, conW - boxW);
+      const maxX = Math.max(0, conW - boxW);
 
       // clamp value
       const clampedX = Math.min(Math.max(nextX, minX), maxX);
@@ -84,144 +96,50 @@ const DragOwl = () => {
   return (
     <div className="items-center">
       <div
-        className="w-[500px] h-[500px] relative border border-black overflow-hidden"
+        className="w-full min-h-[360px] relative overflow-hidden"
         ref={conRef}
       >
-        <div className="absolute cursor-pointer" ref={boxRef} draggable={false}>
+        <div
+          className="absolute cursor-pointer select-none"
+          ref={boxRef}
+          draggable={false}
+        >
           <div className="w-[1943px] relative touch-manipulation flex flex-row">
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-[277.5px] touch-pan-y ">
-              <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-                <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-                  <div className="h-[156px] ">
-                    <img
-                      src={museImg}
-                      alt="muse"
-                      className="w-full rounded-sm"
-                      draggable={false}
-                    />
-                  </div>
-                  <div className="p-[20px] flex flex-col ">
-                    <h3 className="text-lg mb-[10px] font-medium ">
-                      DESENVOLVIMENTO E IDENTIDADE VISUAL{" "}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <DragOwlCard
+              img={museImg}
+              alt={"Desenvolvimento de identidade visual"}
+              txt={"DESENVOLVIMENTO DE IDENTIDADE VISUAL"}
+            />
+            <DragOwlCard
+              img={envelopamentoImg}
+              alt={"ENVELOPAMENTO E ADESIVASÃO"}
+              txt={"ENVELOPAMENTO E ADESIVASÃO"}
+            />
+            <DragOwlCard
+              img={coberturasImg}
+              alt={"COBERTURAS E ESTRUTURAS METALICAS"}
+              txt={"COBERTURAS E ESTRUTURAS METALICAS"}
+            />
+            <DragOwlCard
+              img={impressaoImg}
+              alt={"IMPRESSÃO DIGITAL"}
+              txt={"IMPRESSÃO DIGITAL"}
+            />
+            <DragOwlCard
+              img={totensImg}
+              alt={"TOTENS E SINALIZAÇÃO EXTERNA E INTERNA"}
+              txt={"TOTENS E SINALIZAÇÃO EXTERNA E INTERNA"}
+            />
+            <DragOwlCard
+              img={fachadaImg}
+              alt={"FACHADAS E REVESTIMENTO EM ACM"}
+              txt={"FACHADAS E REVESTIMENTO EM ACM"}
+            />
+            <DragOwlCard
+              img={luminososImg}
+              alt={"LUMINOSOS E LETRAS EM CHAPA/INOX"}
+              txt={"LUMINOSOS E LETRAS EM CHAPA/INOX"}
+            />
           </div>
         </div>
       </div>
