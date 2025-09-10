@@ -9,6 +9,7 @@ import impressao from "/assets/images/impressao.jpg";
 import totens from "/assets/images/totens.jpg";
 import fachada from "/assets/images/fachada.jpg";
 import luminosos from "/assets/images/luminosos.jpg";
+import alphaville from "/assets/images/alphaville.jpg";
 
 import logo from "/assets/images/logo.png";
 import quem from "/assets/images/quem.png";
@@ -31,6 +32,7 @@ export const impressaoImg = impressao;
 export const totensImg = totens;
 export const fachadaImg = fachada;
 export const luminososImg = luminosos;
+export const alphavilleImg = alphaville;
 
 export const solucoesImg = solucoes;
 export const equipeImg = equipe;
