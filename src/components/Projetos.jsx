@@ -1,6 +1,6 @@
-import { alphavilleImg } from "../utils";
 import Linha from "./Linha";
-import ProjetoCard from "./ProjetoCard";
+import ProjetoDrag from "./ProjetoDrag";
+import SButton from "./SButton";
 
 const Projetos = () => {
   return (
@@ -15,21 +15,10 @@ const Projetos = () => {
           totens, letreiros, toldos, revestimentos em ACM, portões, plotagem
           veicular, montagens em geral e etc, confira:{" "}
         </p>
-        <div className="w-100% relative ">
-          <div className="relative overflow-hidden ">
-            <div className="w-[1110px] relative">
-              <div className="w-[1110px] select-none relative ">
-                <div className="py-[20px] px-[10px] gap-[40px] grid grid-cols-3 ">
-                  <ProjetoCard
-                    img={alphavilleImg}
-                    alt={"alpha"}
-                    txt={"totens e sinalização"}
-                    local={"alphaville"}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+        <ProjetoDrag />
+        <div className="mt-[50px] flex flex-row justify-center gap-[30px]">
+          <SButton txt={"ver clientes"} color={"branco"} />
+          <SButton txt={"solicitar orçamento"} />
         </div>
       </div>
     </section>
