@@ -1,4 +1,3 @@
-import { museImg } from "../utils";
 import DragOwl from "./DragOwl";
 import Linha from "./Linha";
 import SButton from "./SButton";

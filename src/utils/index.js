@@ -22,6 +22,7 @@ import acai from "/assets/images/acai.jpg";
 import leo from "/assets/images/leo.jpg";
 import vox from "/assets/images/vox.jpg";
 import chiquinho from "/assets/images/chiquinho.jpg";
+import depoimentosbg from "/assets/images/depoimentosbg.jpg";
 
 import logo from "/assets/images/logo.png";
 import quem from "/assets/images/quem.png";
@@ -57,6 +58,7 @@ export const acaiImg = acai;
 export const leoImg = leo;
 export const voxImg = vox;
 export const chiquinhoImg = chiquinho;
+export const depoimentosbgImg = depoimentosbg;
 
 export const solucoesImg = solucoes;
 export const equipeImg = equipe;
