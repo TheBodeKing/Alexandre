@@ -1,6 +1,7 @@
 import { depoimentosbgImg } from "../utils";
 import DepoimentosDrag from "./DepoimentosDrag";
 import Linha from "./Linha";
+import SeguradoraDrag from "./SeguradoraDrag";
 
 const Depoimentos = () => {
   return (
@@ -15,7 +16,6 @@ const Depoimentos = () => {
           depoimentos <Linha />
         </h2>
         <DepoimentosDrag />
-        <div className="h-[284px]"></div>
         <div className="mt-[30px] items-center justify-center flex z-10">
           <button className="group cursor-pointer select-none">
             <span
@@ -35,6 +35,12 @@ const Depoimentos = () => {
                opacity-50 my-[5px] mx-[7px] rounded-4xl"
             ></span>
           </button>
+        </div>
+        <div className="z-10">
+          <h2 className="branco text-[28px] font-bold mb-[20px]">
+            CLIENTES <Linha />
+          </h2>
+          <SeguradoraDrag />
         </div>
       </div>
     </section>

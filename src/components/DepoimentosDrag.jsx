@@ -102,7 +102,7 @@ const DepoimentosDrag = () => {
 
   return (
     <div
-      className="items-center flex w-full mb-[50px] branco relative "
+      className="items-center flex w-full min-h-[284px] mb-[50px] branco relative overflow-hidden"
       ref={conRef}
     >
       <div
