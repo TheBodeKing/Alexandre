@@ -1,5 +1,21 @@
 import { useEffect, useRef } from "react";
 import DepoimentosCard from "./DepoimentosCard";
+import {
+  casaCardImg,
+  cerqueiraCardImg,
+  copCardImg,
+  msCardImg,
+  perereCardImg,
+  voxCardImg,
+} from "../utils";
+import {
+  casaCardTxt,
+  cerqueiraCardTxt,
+  copCardTxt,
+  MsCardTxt,
+  perereCardTxt,
+  voxCardTxt,
+} from "../constants";
 
 const DepoimentosDrag = () => {
   const conRef = useRef(null);
@@ -86,7 +102,7 @@ const DepoimentosDrag = () => {
 
   return (
     <div
-      className="items-center flex w-full mb-[50px] branco relative"
+      className="items-center flex w-full mb-[50px] branco relative "
       ref={conRef}
     >
       <div
@@ -95,7 +111,42 @@ const DepoimentosDrag = () => {
         ref={boxRef}
         draggable={false}
       >
-        <DepoimentosCard />
+        <DepoimentosCard
+          img={voxCardImg}
+          alt={"Vox"}
+          txt={voxCardTxt}
+          nome={"VOX Imagens"}
+        />
+        <DepoimentosCard
+          img={copCardImg}
+          alt={"COP"}
+          txt={copCardTxt}
+          nome={"COP - Centro Odontológico do Povo"}
+        />
+        <DepoimentosCard
+          img={msCardImg}
+          alt={"MS"}
+          txt={MsCardTxt}
+          nome={"MS Menezes"}
+        />
+        <DepoimentosCard
+          img={perereCardImg}
+          alt={"Perere"}
+          txt={perereCardTxt}
+          nome={"Pererê"}
+        />
+        <DepoimentosCard
+          img={casaCardImg}
+          alt={"Casa"}
+          txt={casaCardTxt}
+          nome={"Casa do Pintor"}
+        />
+        <DepoimentosCard
+          img={cerqueiraCardImg}
+          alt={"Cerqueira"}
+          txt={cerqueiraCardTxt}
+          nome={"Cerqueira Home Center"}
+        />
       </div>
     </div>
   );

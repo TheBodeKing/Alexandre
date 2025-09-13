@@ -15,6 +15,27 @@ const Depoimentos = () => {
           depoimentos <Linha />
         </h2>
         <DepoimentosDrag />
+        <div className="h-[284px]"></div>
+        <div className="mt-[30px] items-center justify-center flex z-10">
+          <button className="group cursor-pointer select-none">
+            <span
+              className="bg-[#db5733] inline-block w-[40px] h-[4px] group-hover:opacity-100 transition-all
+               opacity-50 my-[5px] mx-[7px] rounded-4xl"
+            ></span>
+          </button>
+          <button className="group cursor-pointer select-none">
+            <span
+              className="bg-[#db5733] inline-block w-[40px] h-[4px] group-hover:opacity-100 transition-all
+               opacity-50 my-[5px] mx-[7px] rounded-4xl"
+            ></span>
+          </button>
+          <button className="group cursor-pointer select-none">
+            <span
+              className="bg-[#db5733] inline-block w-[40px] h-[4px] group-hover:opacity-100 transition-all
+               opacity-50 my-[5px] mx-[7px] rounded-4xl"
+            ></span>
+          </button>
+        </div>
       </div>
     </section>
   );

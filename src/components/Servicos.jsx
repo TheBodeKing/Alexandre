@@ -22,7 +22,7 @@ const Servicos = () => {
           <div className="relative w-full  overflow-hidden ">
             <DragOwl />
           </div>
-          <div className="mt-[30px] items-center justify-center  flex">
+          <div className="mt-[30px] items-center justify-center flex">
             <button className="group cursor-pointer select-none">
               <span
                 className="bg-[#868686] inline-block w-[40px] h-[4px] group-hover:bg-[#000] transition-all

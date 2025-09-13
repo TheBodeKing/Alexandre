@@ -23,6 +23,12 @@ import leo from "/assets/images/leo.jpg";
 import vox from "/assets/images/vox.jpg";
 import chiquinho from "/assets/images/chiquinho.jpg";
 import depoimentosbg from "/assets/images/depoimentosbg.jpg";
+import voxCard from "/assets/images/voxCard.jpg";
+import copCard from "/assets/images/copCard.jpg";
+import casaCard from "/assets/images/casaCard.jpg";
+import cerqueiraCard from "/assets/images/cerqueiraCard.jpg";
+import msCard from "/assets/images/msCard.jpg";
+import perereCard from "/assets/images/perereCard.jpg";
 
 import logo from "/assets/images/logo.png";
 import quem from "/assets/images/quem.png";
@@ -59,6 +65,12 @@ export const leoImg = leo;
 export const voxImg = vox;
 export const chiquinhoImg = chiquinho;
 export const depoimentosbgImg = depoimentosbg;
+export const voxCardImg = voxCard;
+export const copCardImg = copCard;
+export const msCardImg = msCard;
+export const perereCardImg = perereCard;
+export const cerqueiraCardImg = cerqueiraCard;
+export const casaCardImg = casaCard;
 
 export const solucoesImg = solucoes;
 export const equipeImg = equipe;

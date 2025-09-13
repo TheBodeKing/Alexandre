@@ -1,23 +1,29 @@
-const DepoimentosCard = ({ img, alt, txt }) => {
+import { Quote } from "lucide-react";
+
+const DepoimentosCard = ({ img, alt, txt, nome }) => {
   return (
     <div
       className="w-[540px] h-[284px] text-justify relative touch-pan-y select-none bg-white 
     cinza py-[20px] px-[50px] rounded-sm overflow-hidden"
     >
-      <div className="flex flex-col relative gap-[40px] py-[20px] px-[10px] ">
-        <div className="shadow-[0px_0px_10px_1px_#00000054] rounded-sm h-[320px] bg-white ">
-          <div className="h-[156px] ">
-            <img
-              src={img}
-              alt={alt}
-              className="w-full rounded-sm"
-              draggable={false}
-            />
-          </div>
-          <div className="p-[20px] flex flex-col ">
-            <h3 className="text-lg mb-[10px] font-bold ">{txt}</h3>
-          </div>
-        </div>
+      <Quote
+        className="laranja absolute top-[23px] left-[26px] scale-y-[-1] scale-x-[-1] fill-current"
+        size={16}
+        strokeWidth={1.5}
+      />
+      <Quote
+        className="laranja absolute bottom-[20px] right-[25px] fill-current"
+        size={16}
+        strokeWidth={1.5}
+      />
+      <div className="pb-[10px] text-justify">{txt}</div>
+      <div className="border-t-[2px] border-[#e3e3e3] pt-[10px] flex items-center cinza flex-row">
+        <img
+          src={img}
+          alt={alt}
+          className="block mr-[10px] w-[50px] rounded-full "
+        />
+        <p>{nome}</p>
       </div>
     </div>
   );
