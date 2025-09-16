@@ -1,4 +1,4 @@
-const SeguradoraCard = (img, alt) => {
+const SeguradoraCard = ({ img, alt }) => {
   return (
     <img
       src={img}

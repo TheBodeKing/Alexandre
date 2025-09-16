@@ -6,7 +6,7 @@ const Projetos = () => {
   return (
     <section className="py-[50px]">
       <div className="max-w-[1140px] w-full px-[15px] mx-auto  ">
-        <h2 className="cinzaEscuro font-bold text-[28px] mb-[20px] ">
+        <h2 className="cinzaEscuro font-bold text-[28px] mb-[20px] flex items-center gap-4 ">
           PROJETOS REALIZADOS <Linha />
         </h2>
         <p className="mb-[20px] cinza ">

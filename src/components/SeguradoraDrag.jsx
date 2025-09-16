@@ -119,11 +119,11 @@ const SeguradoraDrag = () => {
 
   return (
     <div
-      className="rounded-sm overflow-hidden w-[1110px] z-10 relative touch-manipulation touch-pan-y "
+      className="rounded-sm overflow-hidden w-[1110px] min-h-[700px] z-10 relative touch-manipulation touch-pan-y "
       ref={conRef}
     >
       <div
-        className="absolute cursor-pointer select-none p-50px bg-white 
+        className="absolute cursor-pointer select-none p-[50px] bg-white z-10
            flex top-0 left-0 justify-center flex-wrap"
         ref={boxRef}
         draggable={false}

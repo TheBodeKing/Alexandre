@@ -12,7 +12,7 @@ const Depoimentos = () => {
         className="absolute object-cover top-0 left-0 z-0"
       />
       <div className="max-w-[1140px] w-full px-[15px] m-auto z-10 relative">
-        <h2 className="uppercase branco text-[28px] font-bold mb-[20px] ">
+        <h2 className="uppercase branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
           depoimentos <Linha />
         </h2>
         <DepoimentosDrag />
@@ -37,7 +37,7 @@ const Depoimentos = () => {
           </button>
         </div>
         <div className="z-10">
-          <h2 className="branco text-[28px] font-bold mb-[20px]">
+          <h2 className="branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
             CLIENTES <Linha />
           </h2>
           <SeguradoraDrag />

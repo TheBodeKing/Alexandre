@@ -15,7 +15,7 @@ const Servicos = () => {
           acabamentos. Dispomos de diversos serviços e soluções sob medida,
           confira:{" "}
         </p>
-        <h2 className="text-[22px] cinzaEscuro font-bold relative ">
+        <h2 className="text-[22px] cinzaEscuro font-bold relative flex items-center gap-4">
           COMERCIAIS <Linha />
         </h2>
         <div className="w-full z-10 relative cinzaEscuro box-border">
