@@ -39,10 +39,7 @@ const SeguradoraDrag = () => {
   const boxRef = useRef(null);
   const isClicked = useRef(false);
   const coords = useRef({
-    //starting position of the cube
-    startX: 0,
-    //last position of the cube on mouse up
-    lastX: 0,
+    offsetX: 0,
   });
 
   useEffect(() => {
@@ -65,41 +62,27 @@ const SeguradoraDrag = () => {
       if (e.button !== 0) return;
       //fires up the boolean variable that tells if it's clicked
       isClicked.current = true;
-      //updates the current position of the cube based on the position of the mouse
-      cor.startX = e.clientX;
-
-      // also save the current box position!
-      cor.lastX = box.offsetLeft;
+      box.style.transition = "none";
+      cor.offsetX = e.clientX;
+      cor.startLeft = box.offsetLeft;
     };
 
     //when the user stops clicking
     const onMouseUp = (e) => {
-      //tells the boolean variable that the click ended
       isClicked.current = false;
-      //updates the last saved position of the cube based on where the mouse was when released
-      cor.lastX = box.offsetLeft;
+      box.style.transition = "all 1s ease-out";
+      centerBox();
     };
 
     //when the mouse starts moving
     const onMouseMove = (e) => {
       //only matters if the user clicked, so mouse move only counts if also mouse down
       if (!isClicked.current) return;
+      const deltaX = (e.clientX - cor.offsetX) * 0.15;
 
-      // calculate new position: current mouse delta + last saved box position
-      const nextX = e.clientX - cor.startX + cor.lastX;
+      const nextX = cor.startLeft + deltaX;
 
-      const conW = con.clientWidth;
-      const boxW = box.clientWidth;
-      // If box is wider, minX is negative and maxX is 0.
-      // If box is narrower, minX is 0 and maxX is positive.
-      const minX = Math.min(0, conW - boxW);
-      const maxX = Math.max(0, conW - boxW);
-
-      // clamp value
-      const clampedX = Math.min(Math.max(nextX, minX), maxX);
-
-      // update the box position on screen
-      box.style.left = `${clampedX}px`;
+      box.style.left = `${nextX}px`;
     };
 
     //adding the events to it's respectivbes boxes
@@ -119,12 +102,16 @@ const SeguradoraDrag = () => {
 
   return (
     <div
-      className="rounded-sm overflow-hidden w-[1110px] min-h-[700px] z-10 relative touch-manipulation touch-pan-y "
+      className="w-[1110px] min-h-[700px] overflow-hidden 
+        relative items-center flex border border-black
+          rounded-sm z-10 "
       ref={conRef}
     >
       <div
-        className="absolute cursor-pointer select-none p-[50px] bg-white z-10
-           flex top-0 left-0 justify-center flex-wrap"
+        className="w-[1110px] overflow-hidden min-h-[700px]
+       absolute top-0 left-0 touch-manipulation touch-pan-y cursor-pointer
+        select-none p-[50px] bg-white z-10 rounded-sm
+           flex  justify-center flex-wrap"
         ref={boxRef}
         draggable={false}
       >

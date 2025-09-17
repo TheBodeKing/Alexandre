@@ -5,12 +5,10 @@ import SeguradoraDrag from "./SeguradoraDrag";
 
 const Depoimentos = () => {
   return (
-    <section className="pt-[100px] pb-[120px] relative ">
-      <img
-        src={depoimentosbgImg}
-        alt="fundo depoimentos"
-        className="absolute object-cover top-0 left-0 z-0"
-      />
+    <section
+      className={`pt-[100px] pb-[120px] relative bg-cover bg-center bg-fixed`}
+      style={{ backgroundImage: `url(${depoimentosbgImg})` }}
+    >
       <div className="max-w-[1140px] w-full px-[15px] m-auto z-10 relative">
         <h2 className="uppercase branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
           depoimentos <Linha />

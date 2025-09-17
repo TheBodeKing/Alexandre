@@ -102,12 +102,16 @@ const DepoimentosDrag = () => {
 
   return (
     <div
-      className="items-center flex w-full min-h-[284px] mb-[50px] branco relative overflow-hidden"
+      className="w-full min-h-[284px] overflow-hidden
+      relative items-center flex   
+      mb-[50px] branco  "
       ref={conRef}
     >
       <div
-        className="w-[3420px] overflow-hidden min-h-[284px] absolute top-0 left-0
-        touch-manipulation cursor-pointer select-none gap-[30px] flex flex-row"
+        className="w-[3420px] overflow-hidden min-h-[284px] 
+        absolute top-0 left-0
+        touch-manipulation cursor-pointer 
+        select-none gap-[30px] flex flex-row"
         ref={boxRef}
         draggable={false}
       >
