@@ -2,6 +2,7 @@ import { depoimentosbgImg } from "../utils";
 import DepoimentosDrag from "./DepoimentosDrag";
 import Linha from "./Linha";
 import SeguradoraDrag from "./SeguradoraDrag";
+import SButton from "./SButton";
 
 const Depoimentos = () => {
   return (
@@ -39,6 +40,9 @@ const Depoimentos = () => {
             CLIENTES <Linha />
           </h2>
           <SeguradoraDrag />
+          <div className="mt-[50px] flex justify-center">
+            <SButton txt={"solicitar orçamento"} />
+          </div>
         </div>
       </div>
     </section>

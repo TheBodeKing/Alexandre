@@ -103,8 +103,7 @@ const SeguradoraDrag = () => {
   return (
     <div
       className="w-[1110px] min-h-[700px] overflow-hidden 
-        relative items-center flex border border-black
-          rounded-sm z-10 "
+        relative items-center flex rounded-sm z-10 "
       ref={conRef}
     >
       <div
