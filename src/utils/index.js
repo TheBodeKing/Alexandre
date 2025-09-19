@@ -70,6 +70,7 @@ import oficinaLogo from "/assets/images/oficina.png";
 import oralLogo from "/assets/images/oral.png";
 import perereLogo from "/assets/images/perere.png";
 import sbLogo from "/assets/images/sb.png";
+import homem from "/assets/images/homem.png";
 
 export const cerqueiraImg = cerqueira;
 export const britoImg = farmaciabrito;
@@ -143,3 +144,4 @@ export const oficinaLogoImg = oficinaLogo;
 export const oralLogoImg = oralLogo;
 export const perereLogoImg = perereLogo;
 export const sbLogoImg = sbLogo;
+export const homemImg = homem;

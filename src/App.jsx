@@ -6,6 +6,8 @@ import Servicos from "./components/Servicos";
 import Projetos from "./components/Projetos";
 import Depoimentos from "./components/Depoimentos";
 import Contato from "./components/Contato";
+import Instagram from "./components/Instagram";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
       <Projetos />
       <Depoimentos />
       <Contato />
+      <Instagram />
+      <Footer />
     </main>
   );
 }

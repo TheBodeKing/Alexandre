@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import Linha from "./Linha";
+import SButton from "./SButton";
+import { homemImg } from "../utils";
 
 const Contato = () => {
+  const [nUm, setNUm] = useState(0);
+  const [nDois, setNDois] = useState(0);
+  const [res, setRes] = useState(0);
+
+  useEffect(() => {
+    const randomN = () => Math.floor(Math.random() * 10) + 1;
+
+    const a = randomN();
+    const b = randomN();
+
+    setNUm(a);
+    setNDois(b);
+    setRes(a + b);
+  }, []);
+
   return (
     <section className="py-[50px] relative">
       <div className="max-w-[1110px] relative w-full px-[15px] mx-auto ">
@@ -12,7 +30,7 @@ const Contato = () => {
           formulário ao lado e nos conte sua necessidade.
         </p>
         <form>
-          <div className="flex flex-wrap gap-[30px] ">
+          <div className="flex flex-wrap gap-[30px] mb-4">
             <div className="w-5/12 max-w-5/12">
               <div className="relative mb-4 ">
                 <input
@@ -80,18 +98,45 @@ const Contato = () => {
               </div>
             </div>
             <div className="w-5/12 max-w-5/12">
-              <div className="relative mb-4">
+              <div className="relative ">
                 <textarea
-                  className="rounded-sm h-[133px] py-[10px] px-5 w-full bg-white text-black focus:border-[#717477]
-                  border border-[#ced4da] focus:ring-4 focus:ring-blue-200 outline-none overflow-auto resize-y align-top"
+                  className="rounded-sm h-[133px] py-[10px] px-5 w-full bg-white 
+                  text-black focus:border-[#717477] mb-4
+                  border border-[#ced4da] focus:ring-4 focus:ring-blue-200 outline-none 
+                  overflow-auto resize-y align-top"
                   name="mensagem"
                   placeholder="Mensagem"
                   aria-required="true"
                 />
+                <div className="relative mb-4 cinza">
+                  <div className="mb-[10px] ">
+                    <p>
+                      Informe o resultado da soma ao lado:{" "}
+                      <span className="font-bold">
+                        {" "}
+                        {nUm} + {nDois}{" "}
+                      </span>
+                    </p>
+                  </div>
+                  <input
+                    className="rounded-sm h-[45px] px-5 w-full bg-white text-black focus:border-[#717477]
+                  border border-[#ced4da] focus:ring-4 focus:ring-blue-200 outline-none"
+                    type="text"
+                    name="capUser"
+                    required=""
+                    aria-required="true"
+                  />
+                </div>
               </div>
             </div>
           </div>
+          <SButton txt={"Solicitar Orçamento"} />
         </form>
+        <img
+          src={homemImg}
+          alt="Homem"
+          className="absolute -bottom-3/5 -right-3/20 -z-1"
+        />
       </div>
     </section>
   );
