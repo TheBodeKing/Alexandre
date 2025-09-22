@@ -1,22 +1,72 @@
+import { useEffect, useRef } from "react";
 import { sobreImg } from "../utils";
 import DragB from "./DragB";
 import Linha from "./Linha";
 import SButton from "./SButton";
+import gsap from "gsap";
 
 const Sobre = () => {
+  const imgRef = useRef();
+  const txtRef = useRef();
+  const rowRef = useRef();
+
+  useEffect(() => {
+    gsap.fromTo(
+      imgRef.current,
+      {
+        y: "100%",
+      },
+      {
+        y: 0,
+        duration: 1.5,
+        ease: "power3.out",
+      }
+    );
+    gsap.fromTo(
+      txtRef.current,
+      {
+        x: "100%",
+      },
+      {
+        x: 0,
+        duration: 1.5,
+        ease: "power3.out",
+      }
+    );
+    gsap.fromTo(
+      rowRef.current,
+      {
+        x: "-100%",
+      },
+      {
+        x: 0,
+        duration: 1.5,
+        ease: "power3.out",
+      }
+    );
+  }, []);
+
   return (
-    <section className="flex flex-col relative m-0 text-left box-border pt-[50px] pb-[100px]">
+    <section
+      className="flex flex-col relative pt-[50px] pb-[100px] "
+      id="sobre"
+    >
       <div className="flex flex-col max-w-[1140px] w-full px-[15px] m-auto">
         <div className="flex flex-row">
-          <DragB
-            img={sobreImg}
-            alt={"fachada da loja"}
-            classImg={
-              "shadow-[0_0_10px_1px_#00000054] w-[370px] absolute h-auto left-1/2 top-0 select-none"
-            }
-            classBox={"w-[580px] h-[370px]"}
-          />
-          <div className="max-w-[50%] relative px-[15px] popins cinza">
+          <div ref={imgRef}>
+            <DragB
+              img={sobreImg}
+              alt={"fachada da loja"}
+              classImg={
+                "shadow-[0_0_10px_1px_#00000054] w-[370px] absolute h-auto left-1/2 top-0 select-none cursor-grab"
+              }
+              classBox={"w-[580px] h-[370px]"}
+            />
+          </div>
+          <div
+            className="max-w-[50%] relative px-[15px] popins cinza"
+            ref={txtRef}
+          >
             <h2 className="mt-[40px] text-3xl/tight flex font-bold items-center laranja mb-[20px] gap-4">
               QUEM SOMOS <Linha />
             </h2>
@@ -38,7 +88,7 @@ const Sobre = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row w-full" ref={rowRef}>
           <div className="mt-[30px] flex-1 px-[15px] popins ">
             <h3 className="mt-[40px] text-xl laranja mb-[20px] flex items-center gap-4">
               MISSÃO <Linha />

@@ -12,6 +12,7 @@ const Banner = () => {
   const txtARef = useRef([]);
   const [ativoTxt, setAtivoTxt] = useState(true);
   const [antN, setAntN] = useState(0);
+  const scaleTweenRef = useRef(null);
 
   const inOut = (antigo, novo, xa, xn) => {
     const tl = gsap.timeline({
@@ -37,7 +38,24 @@ const Banner = () => {
     tl.fromTo(novo, { x: "100vw" }, { x: 0 }, "<");
   };
 
+  const resetScale = () => {
+    if (scaleTweenRef.current) {
+      scaleTweenRef.current.kill();
+      scaleTweenRef.current = null;
+    }
+
+    gsap.set(banRef.current[ativo], { scale: 1 });
+  };
+
   const runSlideTimer = () => {
+    resetScale();
+    scaleTweenRef.current = gsap.to(banRef.current[ativo], {
+      scale: 1.1,
+      duration: 7,
+      onComplete: () => {
+        gsap.set(banRef.current[ativo], { scale: 1 });
+      },
+    });
     const nIndex = (ativo + 1) % bannerListImg.length;
     return setTimeout(() => {
       prevRef.current = banRef.current[ativo];
@@ -70,7 +88,12 @@ const Banner = () => {
 
     const timer = runSlideTimer();
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (scaleTweenRef.current) {
+        scaleTweenRef.current.kill();
+      }
+    };
   }, [ativo]);
 
   useEffect(() => {
@@ -111,29 +134,35 @@ const Banner = () => {
   }, [ativoTxt]);
 
   return (
-    <section className="relative flex min-h-screen h-[827px] w-full">
-      <div>
+    <section className="relative flex min-h-screen h-[830px] mb-[50px] w-full">
+      <div className="w-full overflow-hidden h-[830px] relative">
         {bannerListImg.map(({ img, id }) => (
           <div
             key={id}
             ref={(el) => (banRef.current[id] = el)}
-            className="absolute top-0 left-0"
+            className="absolute top-0 left-0 h-[830px] w-full"
           >
-            {<img src={img} alt="banner" className="min-h-screen h-[827px]" />}
+            {
+              <img
+                src={img}
+                alt="banner"
+                className="w-full h-full object-cover"
+              />
+            }
           </div>
         ))}
       </div>
 
-      <div>
-        <div className="absolute top-[40%] branco left-30 ">
+      <div className="min-h-[600px]">
+        <div className="absolute top-[40%] ml-auto w-full branco left-30 max-w-[450px] ">
           <h1
-            className="max-w-[21ch] text-4xl/12"
+            className="max-w-[21ch] text-4xl/[45px] left-0 relative "
             ref={(el) => (txtHRef.current[0] = el)}
           >
             ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
           </h1>
           <p
-            className="max-w-[48ch] text-left mt-[20px] mb-[10px] text-base font-medium"
+            className="max-w-[48ch] text-left mt-4 mb-[10px] text-base font-medium"
             ref={(el) => (txtPRef.current[0] = el)}
           >
             Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
@@ -157,16 +186,16 @@ const Banner = () => {
           </a>
         </div>
         {/*copia*/}
-        <div className="absolute top-[40%] branco left-30">
+        <div className="absolute top-[40%] ml-auto w-full branco left-30 max-w-[450px] ">
           <h1
-            className="max-w-[21ch] text-4xl/12"
+            className="max-w-[21ch] text-4xl/[45px] left-0 relative "
             ref={(el) => (txtHRef.current[1] = el)}
           >
             ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
           </h1>
           <p
+            className="max-w-[48ch] text-left mt-4 mb-[10px] text-base font-medium"
             ref={(el) => (txtPRef.current[1] = el)}
-            className="max-w-[48ch] text-left mt-[20px] mb-[10px] text-base/6 font-medium"
           >
             Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
             primando pela <span className="font-bold">qualidade</span>,{" "}
@@ -176,7 +205,7 @@ const Banner = () => {
           </p>
           <a
             ref={(el) => (txtARef.current[1] = el)}
-            className="inline-block py-2 px-7 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
+            className="inline-block py-2 px-6 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
          rounded-sm shadow-[0_0_22px_3px_rgba(241,106,65,1)] font-bold cursor-pointer"
             onMouseEnter={(e) =>
               gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 })
@@ -196,6 +225,7 @@ const Banner = () => {
             className={`w-5 h-5 laranjabg cursor-pointer rounded-full
               ${id === ativo ? "border-2 border-white box-border" : ""} `}
             onClick={() => {
+              resetScale();
               prevRef.current = banRef.current[ativo];
               setAntN(ativo);
               setAtivo(id);

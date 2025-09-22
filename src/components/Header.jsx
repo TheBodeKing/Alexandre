@@ -43,6 +43,8 @@ const Header = () => {
             <a
               href="tel:7532238246"
               className="text-[15px] ml-10 uppercase cursor-pointer hover:text-[#db5733] transition-all"
+              rel="noopener noreferrer"
+              aria-label="Telefone"
             >
               75 3223-8246
             </a>
@@ -51,6 +53,8 @@ const Header = () => {
                 href="https://www.instagram.com/faestruturasvisuais/"
                 target="_blank"
                 className="ml-[15px] text-[15px]"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
               >
                 <Insta
                   atr={
@@ -62,6 +66,7 @@ const Header = () => {
                 href="https://www.facebook.com/faestruturametalica/"
                 target="_blank"
                 className="ml-[15px] text-[15px]"
+                aria-label="Facebook"
               >
                 <Face
                   atr={
@@ -73,6 +78,8 @@ const Header = () => {
                 href="https://api.whatsapp.com/send?phone=557532238246&text=Ol%C3%A1,%20venho%20atrav%C3%A9s%20do%20site%20e%20preciso%20de%20atendimento."
                 target="_blank"
                 className="ml-[15px] text-[15px]"
+                rel="noopener noreferrer"
+                aria-label="Whatsapp"
               >
                 <Zap
                   atr={
