@@ -111,7 +111,7 @@ const Banner = () => {
   }, [ativoTxt]);
 
   return (
-    <section className="relative flex min-h-screen h-[827px] w-full popins">
+    <section className="relative flex min-h-screen h-[827px] w-full">
       <div>
         {bannerListImg.map(({ img, id }) => (
           <div
@@ -123,23 +123,7 @@ const Banner = () => {
           </div>
         ))}
       </div>
-      <div className="absolute flex left-1/2 -translate-x-1/2 bottom-14 gap-3 z-10">
-        {bannerBtnList.map(({ id }) => (
-          <button
-            key={id}
-            className={`w-5 h-5 laranjabg cursor-pointer rounded-full
-              ${id === ativo ? "border-2 border-white box-border" : ""} `}
-            onClick={() => {
-              prevRef.current = banRef.current[ativo];
-              setAntN(ativo);
-              setAtivo(id);
-              if (id !== ativo) {
-                setAtivoTxt(!ativoTxt);
-              }
-            }}
-          />
-        ))}
-      </div>
+
       <div>
         <div className="absolute top-[40%] branco left-30 ">
           <h1
@@ -204,6 +188,23 @@ const Banner = () => {
             SOBRE A FA ESTRUTURAS
           </a>
         </div>
+      </div>
+      <div className="absolute flex left-1/2 -translate-x-1/2 bottom-14 gap-3 z-10">
+        {bannerBtnList.map(({ id }) => (
+          <button
+            key={id}
+            className={`w-5 h-5 laranjabg cursor-pointer rounded-full
+              ${id === ativo ? "border-2 border-white box-border" : ""} `}
+            onClick={() => {
+              prevRef.current = banRef.current[ativo];
+              setAntN(ativo);
+              setAtivo(id);
+              if (id !== ativo) {
+                setAtivoTxt(!ativoTxt);
+              }
+            }}
+          />
+        ))}
       </div>
     </section>
   );

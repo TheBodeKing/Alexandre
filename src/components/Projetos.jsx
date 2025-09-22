@@ -4,7 +4,7 @@ import SButton from "./SButton";
 
 const Projetos = () => {
   return (
-    <section className="py-[50px]">
+    <section className="py-[50px]" id="projetos">
       <div className="max-w-[1140px] w-full px-[15px] mx-auto  ">
         <h2 className="cinzaEscuro font-bold text-[28px] mb-[20px] flex items-center gap-4 ">
           PROJETOS REALIZADOS <Linha />
