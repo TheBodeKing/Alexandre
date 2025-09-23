@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { bannerBtnList, bannerListImg } from "../constants";
 import { gsap } from "gsap";
+import BannerTxt from "./BannerTxt";
 
 const Banner = () => {
   //criando as referencias e estados
@@ -98,6 +99,9 @@ const Banner = () => {
   //Efetio onde é computado qual texto deve ser substituido pelo novo, de acordo com o banner
   useEffect(() => {
     if (!txtHRef.current || !txtPRef.current || !txtARef.current) return;
+    if (txtARef.current[0]) {
+      gsap.set(txtARef.current[0], { y: 0 }); // dummy set, just triggers reflow
+    }
 
     if (primeiro) {
       gsap.set(txtHRef.current[1], {
@@ -152,72 +156,21 @@ const Banner = () => {
           </div>
         ))}
       </div>
-
-      <div className="min-h-[600px]">
-        <div className="absolute top-[40%] ml-auto w-full branco left-30 max-w-[450px] ">
-          <h1
-            className="max-w-[21ch] text-4xl/[45px] left-0 relative "
-            ref={(el) => (txtHRef.current[0] = el)}
-          >
-            ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
-          </h1>
-          <p
-            className="max-w-[48ch] text-left mt-4 mb-[10px] text-base font-medium"
-            ref={(el) => (txtPRef.current[0] = el)}
-          >
-            Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
-            primando pela <span className="font-bold">qualidade</span>,{" "}
-            <span className="font-bold">eficiencia</span>,{" "}
-            <span className="font-bold">prazo</span> previstos{" "}
-            <span className="font-bold">preços</span> competitivos
-          </p>
-          <a
-            ref={(el) => (txtARef.current[0] = el)}
-            className="inline-block py-2 px-6 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
-         rounded-sm shadow-[0_0_22px_3px_rgba(241,106,65,1)] font-bold cursor-pointer"
-            onMouseEnter={(e) =>
-              gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 })
-            }
-            onMouseLeave={(e) =>
-              gsap.to(e.currentTarget, { scale: 1, duration: 0.2 })
-            }
-          >
-            SOBRE A FA ESTRUTURAS
-          </a>
-        </div>
-        {/*copia*/}
-        <div className="absolute top-[40%] ml-auto w-full branco left-30 max-w-[450px] ">
-          <h1
-            className="max-w-[21ch] text-4xl/[45px] left-0 relative "
-            ref={(el) => (txtHRef.current[1] = el)}
-          >
-            ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
-          </h1>
-          <p
-            className="max-w-[48ch] text-left mt-4 mb-[10px] text-base font-medium"
-            ref={(el) => (txtPRef.current[1] = el)}
-          >
-            Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
-            primando pela <span className="font-bold">qualidade</span>,{" "}
-            <span className="font-bold">eficiencia</span>,{" "}
-            <span className="font-bold">prazo</span> previstos{" "}
-            <span className="font-bold">preços</span> competitivos
-          </p>
-          <a
-            ref={(el) => (txtARef.current[1] = el)}
-            className="inline-block py-2 px-6 mt-[20px] bg-gradient-to-r from-[#ef6c46] to-[#fbaf5a]
-         rounded-sm shadow-[0_0_22px_3px_rgba(241,106,65,1)] font-bold cursor-pointer"
-            onMouseEnter={(e) =>
-              gsap.to(e.currentTarget, { scale: 1.05, duration: 0.2 })
-            }
-            onMouseLeave={(e) =>
-              gsap.to(e.currentTarget, { scale: 1, duration: 0.2 })
-            }
-          >
-            SOBRE A FA ESTRUTURAS
-          </a>
-        </div>
+      <div className="min-h-[600px] w-full absolute top-0 left-0">
+        <BannerTxt
+          txtARef={txtARef}
+          txtPRef={txtPRef}
+          txtHRef={txtHRef}
+          n={0}
+        />
+        <BannerTxt
+          txtARef={txtARef}
+          txtPRef={txtPRef}
+          txtHRef={txtHRef}
+          n={1}
+        />
       </div>
+
       <div className="absolute flex left-1/2 -translate-x-1/2 bottom-14 gap-3 z-10">
         {bannerBtnList.map(({ id }) => (
           <button

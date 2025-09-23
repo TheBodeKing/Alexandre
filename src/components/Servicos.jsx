@@ -4,10 +4,13 @@ import SButton from "./SButton";
 
 const Servicos = () => {
   return (
-    <section className="py-[50px] relative w-full min-h-fit" id="servicos">
-      <div className="max-w-[1140px] w-full px-15 mx-auto ">
-        <h2 className="laranja text-[28px] font-bold mb-[20px] ">
-          NOSSOS SERVIÇOS
+    <section
+      className="py-[50px] block relative w-full min-h-fit"
+      id="servicos"
+    >
+      <div className="max-w-[1140px] w-full px-[15px] mx-auto ">
+        <h2 className="laranja text-[28px] font-bold mb-5 flex items-center gap-4 ">
+          NOSSOS SERVIÇOS <Linha />
         </h2>
         <p className="mb-[20px] cinza">
           Sempre pesquisando novidades e tendências de mercado, primamos por
@@ -19,7 +22,7 @@ const Servicos = () => {
           COMERCIAIS <Linha />
         </h2>
         <div className="w-full z-10 relative cinzaEscuro box-border">
-          <div className="relative w-full  overflow-hidden ">
+          <div className="relative w-full overflow-hidden ">
             <DragOwl />
           </div>
           <div className="mt-[30px] items-center justify-center flex">
