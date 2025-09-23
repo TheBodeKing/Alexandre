@@ -3,6 +3,7 @@ import { bannerBtnList, bannerListImg } from "../constants";
 import { gsap } from "gsap";
 
 const Banner = () => {
+  //criando as referencias e estados
   const banRef = useRef([]);
   const prevRef = useRef(null);
   const [ativo, setAtivo] = useState(0);
@@ -13,7 +14,7 @@ const Banner = () => {
   const [ativoTxt, setAtivoTxt] = useState(true);
   const [antN, setAntN] = useState(0);
   const scaleTweenRef = useRef(null);
-
+  //função que tira o baner antigo e substitui pelo novo
   const inOut = (antigo, novo, xa, xn) => {
     const tl = gsap.timeline({
       defaults: { duration: 0.6, ease: "power2.inOut" },
@@ -21,7 +22,7 @@ const Banner = () => {
     tl.fromTo(antigo, { x: 0 }, { x: xa });
     tl.fromTo(novo, { x: xn }, { x: 0 }, "<");
   };
-
+  //função que substitui o texto antigo e substitui pelo novo
   const txtInOut = (antigo, novo, dh, dp) => {
     gsap.killTweensOf([antigo, novo]);
     const tl = gsap.timeline({
@@ -37,16 +38,15 @@ const Banner = () => {
     gsap.set(novo, { display: dp, zIndex: 100, pointerEvents: "auto" });
     tl.fromTo(novo, { x: "100vw" }, { x: 0 }, "<");
   };
-
+  //função que interrompe/reseta a mudança de tamanho do banner
   const resetScale = () => {
     if (scaleTweenRef.current) {
       scaleTweenRef.current.kill();
       scaleTweenRef.current = null;
+      gsap.set(banRef.current[ativo], { scale: 1 });
     }
-
-    gsap.set(banRef.current[ativo], { scale: 1 });
   };
-
+  //função que permite automaticamente a mudança de banner
   const runSlideTimer = () => {
     resetScale();
     scaleTweenRef.current = gsap.to(banRef.current[ativo], {
@@ -64,9 +64,10 @@ const Banner = () => {
       setAtivo(nIndex);
     }, 7000);
   };
-
+  //Efeito onde é computado qual banner deve ser substituido pelo novo
   useEffect(() => {
     if (!banRef.current[ativo]) return;
+    const timer = runSlideTimer();
 
     if (primeiro) {
       bannerBtnList.forEach((element) => {
@@ -75,7 +76,7 @@ const Banner = () => {
         }
       });
       setPrimeiro(false);
-      const timer = runSlideTimer();
+
       return () => clearTimeout(timer);
     }
     if (!prevRef.current) return;
@@ -86,16 +87,15 @@ const Banner = () => {
       inOut(prevRef.current, banRef.current[ativo], "100%", "-100%");
     }
 
-    const timer = runSlideTimer();
-
     return () => {
+      resetScale();
       clearTimeout(timer);
       if (scaleTweenRef.current) {
         scaleTweenRef.current.kill();
       }
     };
   }, [ativo]);
-
+  //Efetio onde é computado qual texto deve ser substituido pelo novo, de acordo com o banner
   useEffect(() => {
     if (!txtHRef.current || !txtPRef.current || !txtARef.current) return;
 

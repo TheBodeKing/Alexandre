@@ -1,55 +1,61 @@
 import { useEffect, useRef } from "react";
 import { sobreImg } from "../utils";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DragB from "./DragB";
 import Linha from "./Linha";
 import SButton from "./SButton";
 import gsap from "gsap";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Sobre = () => {
   const imgRef = useRef();
   const txtRef = useRef();
   const rowRef = useRef();
+  const boxRef = useRef();
 
   useEffect(() => {
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: boxRef.current,
+        start: "top bottom", // when section is 80% down from top of viewport
+        once: true, // only happens once
+      },
+    });
+    const elements = rowRef.current.children;
+    tl.fromTo(
       imgRef.current,
-      {
-        y: "100%",
-      },
-      {
-        y: 0,
-        duration: 1.5,
-        ease: "power3.out",
-      }
-    );
-    gsap.fromTo(
-      txtRef.current,
-      {
-        x: "100%",
-      },
-      {
-        x: 0,
-        duration: 1.5,
-        ease: "power3.out",
-      }
-    );
-    gsap.fromTo(
-      rowRef.current,
-      {
-        x: "-100%",
-      },
-      {
-        x: 0,
-        duration: 1.5,
-        ease: "power3.out",
-      }
-    );
+      { y: "100%" },
+      { y: 0, duration: 1.5, ease: "power3.out" }
+    )
+      .fromTo(
+        txtRef.current,
+        { x: "100%" },
+        { x: 0, duration: 1.5, ease: "power3.out" },
+        "-=1.5"
+      )
+      .fromTo(
+        elements,
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.3,
+          ease: "power2.out",
+        },
+        "-=1"
+      );
   }, []);
 
   return (
     <section
       className="flex flex-col relative pt-[50px] pb-[100px] "
       id="sobre"
+      ref={boxRef}
     >
       <div className="flex flex-col max-w-[1140px] w-full px-[15px] m-auto">
         <div className="flex flex-row">

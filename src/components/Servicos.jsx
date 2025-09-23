@@ -4,7 +4,7 @@ import SButton from "./SButton";
 
 const Servicos = () => {
   return (
-    <section className="py-[50px] relative w-full min-h-fit">
+    <section className="py-[50px] relative w-full min-h-fit" id="servicos">
       <div className="max-w-[1140px] w-full px-15 mx-auto ">
         <h2 className="laranja text-[28px] font-bold mb-[20px] ">
           NOSSOS SERVIÇOS
