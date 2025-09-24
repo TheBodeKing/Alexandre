@@ -28,10 +28,10 @@ const DragOwl = () => {
     const box = boxRef.current;
     const con = conRef.current;
     const cor = coords.current;
+    const cardWidth = 277.5;
 
     const centerBox = () => {
-      const centerX = (con.clientWidth - box.clientWidth) / 2;
-      box.style.left = `${centerX}px`;
+      box.style.left = 0;
     };
     centerBox();
 
@@ -46,14 +46,36 @@ const DragOwl = () => {
 
       // also save the current box position!
       cor.lastX = box.offsetLeft;
+
+      // disable transition while dragging
+      box.style.transition = "none";
     };
 
     //when the user stops clicking
     const onMouseUp = (e) => {
       //tells the boolean variable that the click ended
       isClicked.current = false;
-      //updates the last saved position of the cube based on where the mouse was when released
-      cor.lastX = box.offsetLeft;
+
+      // Round the current offsetLeft to the nearest "card slot"
+      let snapped = Math.round(box.offsetLeft / cardWidth) * cardWidth;
+      // Respect the container boundaries (so it doesn’t slide out of view)
+      const conW = con.clientWidth;
+      const boxW = box.clientWidth;
+      const minX = Math.min(0, conW - boxW);
+      const maxX = Math.max(0, conW - boxW);
+
+      // Clamp snapped value
+      snapped = Math.min(Math.max(snapped, minX), maxX);
+
+      // Move box to snapped position
+      box.style.left = `${snapped}px`;
+
+      // re-enable smooth transition only for snap
+      box.style.transition = "left 0.3s ease";
+      box.style.left = `${snapped}px`;
+
+      // Update lastX for correct drag math next time
+      cor.lastX = snapped;
     };
 
     //when the mouse starts moving
@@ -100,7 +122,7 @@ const DragOwl = () => {
         ref={conRef}
       >
         <div
-          className="absolute cursor-pointer select-none"
+          className="absolute cursor-grab select-none"
           ref={boxRef}
           draggable={false}
         >
