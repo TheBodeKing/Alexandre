@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   coberturasImg,
   envelopamentoImg,
@@ -10,7 +10,7 @@ import {
 } from "../utils";
 import DragOwlCard from "./DragOwlCard";
 
-const DragOwl = () => {
+const DragOwl = ({ direction, setDirection, setAtEnd }) => {
   const conRef = useRef(null);
   const boxRef = useRef(null);
   const isClicked = useRef(false);
@@ -20,6 +20,76 @@ const DragOwl = () => {
     //last position of the cube on mouse up
     lastX: 0,
   });
+
+  const direita = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "-832.5px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = -832.5;
+  };
+
+  const esquerda = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "0px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = 0;
+  };
+
+  useEffect(() => {
+    if (!direction) return;
+
+    if (direction === "left") {
+      esquerda();
+      setDirection(null); // reset after action
+    }
+    if (direction === "right") {
+      direita();
+      setDirection(null); // reset after action
+    }
+  }, [direction]);
+
+  const handlePositionCheck = () => {
+    if (!boxRef.current) return;
+
+    const box = boxRef.current;
+    const totalWidth = box.scrollWidth; // full width of all cards
+    const visibleWidth = box.parentElement.offsetWidth; // width of the container
+    const maxLeft = totalWidth - visibleWidth;
+
+    // coords.current.lastX is the offset you’ve applied with "left"
+    const currentLeft = Math.abs(coords.current.lastX);
+
+    setAtEnd(currentLeft >= maxLeft - 5);
+    console.log("owl:", currentLeft >= maxLeft - 5);
+  };
+
+  useEffect(() => {
+    handlePositionCheck();
+  }, [coords.current.lastX]);
 
   useEffect(() => {
     //cheking if the reference exists
@@ -53,6 +123,7 @@ const DragOwl = () => {
 
     //when the user stops clicking
     const onMouseUp = (e) => {
+      console.log("fireup2");
       //tells the boolean variable that the click ended
       isClicked.current = false;
 
@@ -76,10 +147,23 @@ const DragOwl = () => {
 
       // Update lastX for correct drag math next time
       cor.lastX = snapped;
+
+      const clearTransition = () => {
+        boxRef.current.style.transition = "";
+        boxRef.current.removeEventListener("transitionend", clearTransition);
+
+        // ✅ update state once the box has finished moving
+        handlePositionCheck();
+      };
+
+      boxRef.current.addEventListener("transitionend", clearTransition);
+      handlePositionCheck();
+      console.log("fireup");
     };
 
     //when the mouse starts moving
     const onMouseMove = (e) => {
+      console.log("move");
       //only matters if the user clicked, so mouse move only counts if also mouse down
       if (!isClicked.current) return;
 

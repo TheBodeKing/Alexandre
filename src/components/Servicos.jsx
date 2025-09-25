@@ -1,8 +1,11 @@
 import DragOwl from "./DragOwl";
 import Linha from "./Linha";
 import SButton from "./SButton";
+import { useState } from "react";
 
 const Servicos = () => {
+  const [direction, setDirection] = useState("left");
+  const [atEnd, setAtEnd] = useState(false);
   return (
     <section
       className="py-[50px] block relative w-full min-h-fit"
@@ -23,19 +26,39 @@ const Servicos = () => {
         </h2>
         <div className="w-full z-10 relative cinzaEscuro box-border">
           <div className="relative w-full overflow-hidden ">
-            <DragOwl />
+            <DragOwl
+              direction={direction}
+              setDirection={setDirection}
+              setAtEnd={setAtEnd}
+            />
           </div>
           <div className="mt-[30px] items-center justify-center flex">
-            <button className="group cursor-pointer select-none">
+            <button
+              className="group cursor-pointer select-none"
+              onClick={() => {
+                setDirection("left");
+                console.log(atEnd);
+              }}
+            >
               <span
-                className="bg-[#868686] inline-block w-[40px] h-[4px] group-hover:bg-[#000] transition-all
-               opacity-50 my-[5px] mx-[7px] rounded-4xl"
+                className={` inline-block w-[40px] h-[4px] group-hover:bg-[#000] transition-all
+               opacity-50 my-[5px] mx-[7px] rounded-4xl ${
+                 atEnd ? "bg-[#868686]" : "bg-[#000]"
+               }`}
               ></span>
             </button>
-            <button className="group cursor-pointer select-none">
+            <button
+              className="group cursor-pointer select-none"
+              onClick={() => {
+                setDirection("right");
+                console.log(atEnd);
+              }}
+            >
               <span
-                className="bg-[#868686] inline-block w-[40px] h-[4px] group-hover:bg-[#000] transition-all
-               opacity-50 my-[5px] mx-[7px] rounded-4xl"
+                className={` inline-block w-[40px] h-[4px] group-hover:bg-[#000] transition-all
+               opacity-50 my-[5px] mx-[7px] rounded-4xl ${
+                 atEnd ? "bg-[#000]" : "bg-[#868686]"
+               }`}
               ></span>
             </button>
           </div>
