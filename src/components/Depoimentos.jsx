@@ -9,6 +9,7 @@ const Depoimentos = () => {
     <section
       className={`pt-[100px] pb-[120px] relative bg-cover bg-center bg-fixed`}
       style={{ backgroundImage: `url(${depoimentosbgImg})` }}
+      id="depoimentos"
     >
       <div className="max-w-[1140px] w-full px-[15px] m-auto z-10 relative">
         <h2 className="uppercase branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
@@ -35,13 +36,13 @@ const Depoimentos = () => {
             ></span>
           </button>
         </div>
-        <div className="z-10">
+        <div className="z-10" id="clientes">
           <h2 className="branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
             CLIENTES <Linha />
           </h2>
           <SeguradoraDrag />
           <div className="mt-[50px] flex justify-center">
-            <SButton txt={"solicitar orçamento"} />
+            <SButton txt={"solicitar orçamento"} link={"#contato"} />
           </div>
         </div>
       </div>

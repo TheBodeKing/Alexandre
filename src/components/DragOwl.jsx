@@ -84,7 +84,6 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
     const currentLeft = Math.abs(coords.current.lastX);
 
     setAtEnd(currentLeft >= maxLeft - 5);
-    console.log("owl:", currentLeft >= maxLeft - 5);
   };
 
   useEffect(() => {
@@ -123,7 +122,6 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
 
     //when the user stops clicking
     const onMouseUp = (e) => {
-      console.log("fireup2");
       //tells the boolean variable that the click ended
       isClicked.current = false;
 
@@ -152,18 +150,16 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
         boxRef.current.style.transition = "";
         boxRef.current.removeEventListener("transitionend", clearTransition);
 
-        // ✅ update state once the box has finished moving
+        //update state once the box has finished moving
         handlePositionCheck();
       };
 
       boxRef.current.addEventListener("transitionend", clearTransition);
       handlePositionCheck();
-      console.log("fireup");
     };
 
     //when the mouse starts moving
     const onMouseMove = (e) => {
-      console.log("move");
       //only matters if the user clicked, so mouse move only counts if also mouse down
       if (!isClicked.current) return;
 

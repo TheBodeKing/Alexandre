@@ -1,11 +1,35 @@
 import DragOwl from "./DragOwl";
 import Linha from "./Linha";
 import SButton from "./SButton";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
 const Servicos = () => {
   const [direction, setDirection] = useState("left");
   const [atEnd, setAtEnd] = useState(false);
+
+  const owlRef = useRef(null);
+
+  useEffect(() => {
+    if (!owlRef.current) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: owlRef.current,
+        start: "top bottom",
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      owlRef.current,
+      {
+        opacity: 0,
+      },
+      { opacity: 1, duration: 1.5 }
+    );
+  }, []);
+
   return (
     <section
       className="py-[50px] block relative w-full min-h-fit"
@@ -25,7 +49,7 @@ const Servicos = () => {
           COMERCIAIS <Linha />
         </h2>
         <div className="w-full z-10 relative cinzaEscuro box-border">
-          <div className="relative w-full overflow-hidden ">
+          <div className="relative w-full overflow-hidden " ref={owlRef}>
             <DragOwl
               direction={direction}
               setDirection={setDirection}
@@ -63,8 +87,12 @@ const Servicos = () => {
             </button>
           </div>
           <div className="mt-[50px] flex flex-row justify-center gap-[30px]">
-            <SButton txt={"PROJETOS CRIADOS"} color={"branco"} />
-            <SButton txt={"SOLICITAR ORÇAMENTO"} />
+            <SButton
+              txt={"PROJETOS CRIADOS"}
+              color={"branco"}
+              link={"#projetos"}
+            />
+            <SButton txt={"SOLICITAR ORÇAMENTO"} link={"#contato"} />
           </div>
         </div>
       </div>

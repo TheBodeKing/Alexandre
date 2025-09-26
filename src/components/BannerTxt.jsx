@@ -24,7 +24,7 @@ const BannerTxt = ({ txtHRef, txtPRef, txtARef, n }) => {
           ref={(el) => (txtARef.current[n] = el)}
           className="inline-block mt-6"
         >
-          <SButton txt={"sobre a fa estruturas"} />
+          <SButton txt={"sobre a fa estruturas"} link={"#sobre"} />
         </a>
       </div>
     </div>

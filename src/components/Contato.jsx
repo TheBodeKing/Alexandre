@@ -20,7 +20,7 @@ const Contato = () => {
   }, []);
 
   return (
-    <section className="py-[50px] relative">
+    <section className="py-[50px] relative" id="contato">
       <div className="max-w-[1110px] relative w-full px-[15px] mx-auto ">
         <h2 className="uppercase laranja text-[28px] font-bold mb-5 gap-4 items-center flex">
           entre em contato <Linha />

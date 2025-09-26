@@ -126,8 +126,8 @@ const Sobre = () => {
         </div>
       </div>
       <div className="mt-[50px] flex justify-center max-w-[100%] relative w-[100%] px-[15px] cinzaEscuro gap-[30px]">
-        <SButton txt={"VER SERVIÇOS"} color={"branco"} />
-        <SButton txt={"SOLICITAR ORÇAMENTO"} />
+        <SButton txt={"VER SERVIÇOS"} color={"branco"} link={"#servicos"} />
+        <SButton txt={"SOLICITAR ORÇAMENTO"} link={"#contato"} />
       </div>
     </section>
   );
