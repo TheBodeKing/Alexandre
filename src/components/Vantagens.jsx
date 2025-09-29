@@ -60,7 +60,7 @@ const Vantagens = () => {
           <p className="leading-[20px] relative">
             MAIS DE 13 ANOS <br />
             <span className="font-bold">DE EXPERIÊNCIA</span>
-            <div className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
+            <span className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
           </p>
         </div>
         <div className="items-center relative w-[250px] flex flex-col justify-center ">
@@ -72,7 +72,7 @@ const Vantagens = () => {
           <p className="leading-[20px] relative">
             PROJETOS <br />
             <span className="font-bold">PERSONALIZADOS</span>
-            <div className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
+            <span className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
           </p>
         </div>
         <div className="items-center relative w-[250px] flex flex-col justify-center ">
@@ -84,7 +84,7 @@ const Vantagens = () => {
           <p className="leading-[20px] relative">
             MATERIAIS <br />
             <span className="font-bold">DE ALTA QUALIDADE</span>
-            <div className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
+            <span className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
           </p>
         </div>
         <div className="items-center relative w-[250px] flex flex-col justify-center ">
@@ -96,7 +96,7 @@ const Vantagens = () => {
           <p className="leading-[20px] relative">
             EQUIPE <br />
             <span className="font-bold">QUALIDADE</span>
-            <div className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
+            <span className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
           </p>
         </div>
         <div className="items-center relative w-[250px] flex flex-col justify-center ">
@@ -108,7 +108,7 @@ const Vantagens = () => {
           <p className="leading-[20px] relative">
             SOLUÇÕES <br />
             <span className="font-bold">CRIATIVAS</span>
-            <div className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
+            <span className="absolute w-[100px] h-[5px] left-1/2 -translate-x-1/2 bottom-[-28px] rounded-sm laranjabg" />
           </p>
         </div>
       </div>

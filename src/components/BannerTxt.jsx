@@ -20,12 +20,12 @@ const BannerTxt = ({ txtHRef, txtPRef, txtARef, n }) => {
           <span className="font-bold">prazo</span> previsto e{" "}
           <span className="font-bold">preços</span> competitivos
         </p>
-        <a
+        <div
           ref={(el) => (txtARef.current[n] = el)}
           className="inline-block mt-6"
         >
           <SButton txt={"sobre a fa estruturas"} link={"#sobre"} />
-        </a>
+        </div>
       </div>
     </div>
   );

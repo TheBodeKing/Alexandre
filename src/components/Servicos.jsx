@@ -61,7 +61,6 @@ const Servicos = () => {
               className="group cursor-pointer select-none"
               onClick={() => {
                 setDirection("left");
-                console.log(atEnd);
               }}
             >
               <span
@@ -75,7 +74,6 @@ const Servicos = () => {
               className="group cursor-pointer select-none"
               onClick={() => {
                 setDirection("right");
-                console.log(atEnd);
               }}
             >
               <span

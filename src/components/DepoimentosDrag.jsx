@@ -17,7 +17,7 @@ import {
   voxCardTxt,
 } from "../constants";
 
-const DepoimentosDrag = () => {
+const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
   const conRef = useRef(null);
   const boxRef = useRef(null);
   const isClicked = useRef(false);
@@ -27,6 +27,76 @@ const DepoimentosDrag = () => {
     //last position of the cube on mouse up
     lastX: 0,
   });
+
+  const direita = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "-832.5px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = -832.5;
+  };
+
+  const esquerda = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "0px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = 0;
+  };
+
+  const meio = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "0px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = 0;
+  };
+
+  useEffect(() => {
+    if (!direction) return;
+
+    if (direction === "left") {
+      esquerda();
+      setDirection(null); // reset after action
+    }
+    if (direction === "right") {
+      direita();
+      setDirection(null); // reset after action
+    }
+  }, [direction]);
 
   useEffect(() => {
     //cheking if the reference exists
@@ -74,7 +144,7 @@ const DepoimentosDrag = () => {
       box.style.left = `${snapped}px`;
 
       // re-enable smooth transition only for snap
-      box.style.transition = "left 0.6s ease";
+      box.style.transition = "left 0.3s ease";
       box.style.left = `${snapped}px`;
 
       // Update lastX for correct drag math next time
