@@ -155,7 +155,6 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
       };
 
       boxRef.current.addEventListener("transitionend", clearTransition);
-      handlePositionCheck();
     };
 
     //when the mouse starts moving

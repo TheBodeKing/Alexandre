@@ -17,7 +17,7 @@ import {
   voxCardTxt,
 } from "../constants";
 
-const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
+const DepoimentosDrag = ({ direction, setDirection, setBtnAtv }) => {
   const conRef = useRef(null);
   const boxRef = useRef(null);
   const isClicked = useRef(false);
@@ -34,7 +34,7 @@ const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
 
     // move smoothly back to start
     box.style.transition = "left 0.3s ease";
-    box.style.left = "-832.5px";
+    box.style.left = "-2280px";
 
     // cleanup transition after it finishes
     const clearTransition = () => {
@@ -44,7 +44,26 @@ const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
     box.addEventListener("transitionend", clearTransition);
 
     // update the coords so dragging continues correctly
-    coords.current.lastX = -832.5;
+    coords.current.lastX = -2280;
+  };
+
+  const meio = () => {
+    if (!boxRef.current) return;
+    const box = boxRef.current;
+
+    // move smoothly back to start
+    box.style.transition = "left 0.3s ease";
+    box.style.left = "-1140px";
+
+    // cleanup transition after it finishes
+    const clearTransition = () => {
+      box.style.transition = "";
+      box.removeEventListener("transitionend", clearTransition);
+    };
+    box.addEventListener("transitionend", clearTransition);
+
+    // update the coords so dragging continues correctly
+    coords.current.lastX = -1140;
   };
 
   const esquerda = () => {
@@ -66,37 +85,44 @@ const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
     coords.current.lastX = 0;
   };
 
-  const meio = () => {
-    if (!boxRef.current) return;
-    const box = boxRef.current;
-
-    // move smoothly back to start
-    box.style.transition = "left 0.3s ease";
-    box.style.left = "0px";
-
-    // cleanup transition after it finishes
-    const clearTransition = () => {
-      box.style.transition = "";
-      box.removeEventListener("transitionend", clearTransition);
-    };
-    box.addEventListener("transitionend", clearTransition);
-
-    // update the coords so dragging continues correctly
-    coords.current.lastX = 0;
-  };
-
   useEffect(() => {
     if (!direction) return;
 
-    if (direction === "left") {
-      esquerda();
-      setDirection(null); // reset after action
-    }
     if (direction === "right") {
       direita();
       setDirection(null); // reset after action
     }
+    if (direction === "mid") {
+      meio();
+      setDirection(null); // reset after action
+    }
+    if (direction === "left") {
+      esquerda();
+      setDirection(null); // reset after action
+    }
   }, [direction]);
+
+  const handlePositionCheck = () => {
+    if (!boxRef.current) return;
+
+    const box = boxRef.current;
+    const totalWidth = box.scrollWidth; // full width of all cards
+    const visibleWidth = box.parentElement.offsetWidth; // width of the container
+    const maxLeft = totalWidth - visibleWidth;
+
+    // coords.current.lastX is the offset you’ve applied with "left"
+    const currentLeft = Math.abs(coords.current.lastX);
+
+    if (currentLeft >= 2250) {
+      setBtnAtv("right");
+    } else if (currentLeft >= 1130 && currentLeft < 2250) {
+      setBtnAtv("mid");
+    } else {
+      setBtnAtv("left");
+    }
+
+    console.log(currentLeft);
+  };
 
   useEffect(() => {
     //cheking if the reference exists
@@ -150,15 +176,6 @@ const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
       // Update lastX for correct drag math next time
       cor.lastX = snapped;
 
-      const clearTransition = () => {
-        boxRef.current.style.transition = "";
-        boxRef.current.removeEventListener("transitionend", clearTransition);
-
-        //update state once the box has finished moving
-        handlePositionCheck();
-      };
-
-      boxRef.current.addEventListener("transitionend", clearTransition);
       handlePositionCheck();
     };
 
@@ -167,6 +184,7 @@ const DepoimentosDrag = ({ direction, setDirection, setAtEnd, setAtMid }) => {
       //only matters if the user clicked, so mouse move only counts if also mouse down
       if (!isClicked.current) return;
 
+      box.style.transition = "none";
       // calculate new position: current mouse delta + last saved box position
       const nextX = e.clientX - cor.startX + cor.lastX;
 

@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Linha from "./Linha";
 import SButton from "./SButton";
 import { homemImg } from "../utils";
+import gsap from "gsap";
 
 const Contato = () => {
   const [nUm, setNUm] = useState(0);
   const [nDois, setNDois] = useState(0);
   const [res, setRes] = useState(0);
+
+  const formRef = useRef(null);
+  const imgRef = useRef(null);
 
   useEffect(() => {
     const randomN = () => Math.floor(Math.random() * 10) + 1;
@@ -19,9 +23,40 @@ const Contato = () => {
     setRes(a + b);
   }, []);
 
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: formRef.current,
+        start: "top bottom",
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      formRef.current,
+      {
+        x: "-100%",
+      },
+      {
+        x: 0,
+        duration: 1,
+      }
+    ).fromTo(
+      imgRef.current,
+      {
+        y: "100%",
+      },
+      {
+        y: 0,
+        duration: 1,
+      },
+      "-=0.5"
+    );
+  });
+
   return (
     <section className="py-[50px] relative" id="contato">
-      <div className="max-w-[1110px] relative w-full px-[15px] mx-auto ">
+      <div className="max-w-[1140px] relative w-full px-[15px] mx-auto ">
         <h2 className="uppercase laranja text-[28px] font-bold mb-5 gap-4 items-center flex">
           entre em contato <Linha />
         </h2>
@@ -29,7 +64,7 @@ const Contato = () => {
           Estamos prontos e ansiosos para lhe atender. <br /> Preencha o
           formulário ao lado e nos conte sua necessidade.
         </p>
-        <form>
+        <form ref={formRef}>
           <div className="flex flex-wrap gap-[30px] mb-4">
             <div className="w-5/12 max-w-5/12">
               <div className="relative mb-4 ">
@@ -132,10 +167,12 @@ const Contato = () => {
           </div>
           <SButton txt={"Solicitar Orçamento"} />
         </form>
+
         <img
           src={homemImg}
           alt="Homem"
           className="absolute -bottom-3/5 -right-3/20 -z-1"
+          ref={imgRef}
         />
       </div>
     </section>
