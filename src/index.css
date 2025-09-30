@@ -60,3 +60,7 @@ body {
 .cinzaClarobg {
   background-color: #ececec;
 }
+
+.ubuntu {
+  font-family: "Ubuntu", sans-serif;
+}

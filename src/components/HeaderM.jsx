@@ -6,7 +6,7 @@ import Face from "./Face";
 import Insta from "./Insta";
 import Zap from "./Zap";
 
-const Header = () => {
+const HeaderM = () => {
   const headRef = useRef();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <header
-      className="w-full h-fit p-[30px] absolute top-0 left-0 branco z-10 hidden lg:block"
+      className="w-full h-fit p-[30px] absolute top-0 left-0 branco z-10 "
       ref={headRef}
     >
       <div className="flex justify-between items-center max-w-[1140px] w-full px-[15px] mx-auto ">
@@ -105,4 +105,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderM;

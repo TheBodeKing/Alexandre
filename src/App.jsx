@@ -8,11 +8,14 @@ import Depoimentos from "./components/Depoimentos";
 import Contato from "./components/Contato";
 import Instagram from "./components/Instagram";
 import Footer from "./components/Footer";
+import ZapC from "./components/ZapC";
+import HeaderM from "./components/HeaderM";
 
 function App() {
   return (
     <main>
       <Header />
+      <HeaderM />
       <Banner />
       <Sobre />
       <Vantagens />
@@ -22,6 +25,7 @@ function App() {
       <Contato />
       <Instagram />
       <Footer />
+      <ZapC />
     </main>
   );
 }
