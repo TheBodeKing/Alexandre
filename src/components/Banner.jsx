@@ -138,13 +138,13 @@ const Banner = () => {
   }, [ativoTxt]);
 
   return (
-    <section className="relative flex min-h-screen lg:h-[830px] h-[550px] mb-[50px] w-full">
-      <div className="w-full overflow-hidden lg:h-[830px] h-[550px] relative">
+    <section className="relative flex lg:min-h-screen lg:h-[830px] h-[540px] mb-[50px] w-full py-[50px] mt-[-50px]">
+      <div className="w-full overflow-hidden lg:h-[830px] h-[540px] relative m-0 flex ">
         {bannerListImg.map(({ img, id }) => (
           <div
             key={id}
             ref={(el) => (banRef.current[id] = el)}
-            className="absolute top-0 left-0 lg:h-[830px] h-[550px] w-full"
+            className="absolute inset-0 lg:h-[830px] w-full"
           >
             {
               <img
@@ -156,7 +156,7 @@ const Banner = () => {
           </div>
         ))}
       </div>
-      <div className="min-h-[600px] w-full absolute top-0 left-0 z-10">
+      <div className="min-h-[600px] w-full absolute lg:top-0 top-[-130px] left-0 z-10">
         <BannerTxt
           txtARef={txtARef}
           txtPRef={txtPRef}
@@ -171,7 +171,7 @@ const Banner = () => {
         />
       </div>
 
-      <div className="absolute flex left-1/2 -translate-x-1/2 bottom-14 gap-3 z-10">
+      <div className="absolute flex left-1/2 -translate-x-1/2 lg:bottom-14 bottom-0 lg:gap-3 gap-2 z-10">
         {bannerBtnList.map(({ id }) => (
           <button
             key={id}

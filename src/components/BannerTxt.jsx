@@ -2,16 +2,16 @@ import SButton from "./SButton";
 
 const BannerTxt = ({ txtHRef, txtPRef, txtARef, n }) => {
   return (
-    <div className="absolute top-[56%] w-full text-white ">
+    <div className="absolute top-[56%] w-full text-white  ">
       <div className="max-w-[1140px] w-full px-[15px] mx-auto ">
         <h1
-          className="max-w-[21ch] text-4xl/[45px] left-0 relative "
+          className="lg:max-w-[21ch] max-w-[15ch] lg:text-4xl/[45px] text-[29px]/[36px] left-0 relative "
           ref={(el) => (txtHRef.current[n] = el)}
         >
           ESTRUTURAS E <span className="font-bold">COMUNICAÇÃO VISUAL</span>
         </h1>
         <p
-          className="max-w-[48ch] text-left mt-5 mb-[10px] text-base font-medium"
+          className="lg:max-w-[48ch] max-w-[35ch] text-left mt-5 mb-[10px] lg:text-base text-[13px] font-medium"
           ref={(el) => (txtPRef.current[n] = el)}
         >
           Nos orgulhamos em buscar se aprimorar a cada novo trabalho, sempre
