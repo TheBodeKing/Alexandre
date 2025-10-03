@@ -28,7 +28,10 @@ const ZapC = () => {
   }, []);
 
   return (
-    <section id="zap" className="fixed bottom-10 left-10 z-[999]">
+    <section
+      id="zap"
+      className="fixed bottom-10 left-10 z-[999] lg:block hidden"
+    >
       <div className="flex flex-row-reverse gap-5">
         <p
           ref={msgRef}

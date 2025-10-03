@@ -3,8 +3,8 @@ import { Quote } from "lucide-react";
 const DepoimentosCard = ({ img, alt, txt, nome }) => {
   return (
     <div
-      className="w-[540px] h-[284px] text-justify relative touch-pan-y select-none bg-white 
-    cinza py-[20px] px-[50px] rounded-sm overflow-hidden"
+      className="lg:w-[540px] w-[384px] lg:h-[284px] h-[414px] text-justify relative touch-pan-y bg-white 
+    cinza py-[20px] px-[50px] rounded-sm overflow-hidden select-none"
     >
       <Quote
         className="laranja absolute top-[23px] left-[26px] scale-y-[-1] scale-x-[-1] fill-current"

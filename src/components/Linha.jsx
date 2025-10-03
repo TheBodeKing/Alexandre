@@ -1,8 +1,7 @@
-const Linha = () => {
+const Linha = ({ ext }) => {
   return (
     <span
-      className="
-                 w-[150px] h-[5px] cinzaClarobg rounded-lg inline-block"
+      className={`w-[150px] h-[5px] cinzaClarobg rounded-lg lg:inline-block hidden ${ext} `}
     />
   );
 };

@@ -6,20 +6,20 @@ import Zap from "./Zap";
 const Footer = () => {
   return (
     <footer className="cinza">
-      <div className="max-w-[1140px] w-full px-[15px] mx-auto ">
-        <div className="py-[50px] px-[30px] text-sm ">
-          <div className="flex ">
-            <div className="max-w-1/6 flex-1/6 relative w-full px-[15px] ">
+      <div className="lg:max-w-[1140px] w-full px-[15px] mx-auto ">
+        <div className="lg:py-[50px] lg:px-[30px] pt-5 text-sm text-center lg:text-left">
+          <div className="flex lg:flex-row flex-col">
+            <div className="max-w-1/6 flex-1/6 relative w-full px-[15px] lg:block hidden">
               <img
                 src={logoImg}
                 alt="FA Estruturas"
                 className="w-25 align-middle"
               />
             </div>
-            <div className="maw-w-1/3 flex-1/3 relative w-full px-[15px]">
+            <div className="lg:maw-w-1/3 lg:flex-1/3 lg:pb-0 pb-[30px] relative w-full px-[15px] ">
               <h4 className="cinzaEscuro text-[16px] uppercase pb-[10px] mb-[15px] font-bold relative ">
                 onde estamos{" "}
-                <span className="absolute w-[50px] h-[2px] bg-[#db5733] left-0 bottom-0" />
+                <span className="absolute w-[50px] h-[2px] bg-[#db5733] lg:left-0 left-1/2 translate-x-1/2 bottom-0" />
               </h4>
               <p>
                 <a
@@ -32,10 +32,10 @@ const Footer = () => {
                 </a>
               </p>
             </div>
-            <div className="maw-w-1/3 flex-1/3 relative w-full px-[15px]">
+            <div className="lg:maw-w-1/3 lg:flex-1/3 lg:pb-0 pb-[30px] relative w-full px-[15px]">
               <h4 className="cinzaEscuro text-[16px] uppercase pb-[10px] mb-[15px] font-bold relative ">
                 central de atendimento{" "}
-                <span className="absolute w-[50px] h-[2px] bg-[#db5733] left-0 bottom-0" />
+                <span className="absolute w-[50px] h-[2px] bg-[#db5733] lg:left-0 left-1/2 translate-x-1/2 bottom-0" />
               </h4>
               <p>
                 <a href="tel:7532238246" title="Telefone">
@@ -47,10 +47,10 @@ const Footer = () => {
                 </a>
               </p>
             </div>
-            <div className="max-w-1/6 flex-1/6 w-full relative px-[15px]">
+            <div className="lg:maw-w-1/3 lg:flex-1/3 lg:pb-0 pb-[30px] w-full relative px-[15px]">
               <h4 className="cinzaEscuro text-[16px] uppercase pb-[10px] mb-[15px] font-bold relative ">
                 mídias sociais{" "}
-                <span className="absolute w-[50px] h-[2px] bg-[#db5733] left-0 bottom-0" />
+                <span className="absolute w-[50px] h-[2px] bg-[#db5733] lg:left-0 left-1/2 translate-x-1/2 bottom-0" />
               </h4>
               <div className="flex relative gap-[10px]">
                 <a

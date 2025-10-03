@@ -2,7 +2,7 @@ import SButton from "./SButton";
 
 const BannerTxt = ({ txtHRef, txtPRef, txtARef, n }) => {
   return (
-    <div className="absolute top-[56%] w-full text-white  ">
+    <div className="absolute lg:top-[56%] top-[53%] w-full text-white  ">
       <div className="max-w-[1140px] w-full px-[15px] mx-auto ">
         <h1
           className="lg:max-w-[21ch] max-w-[15ch] lg:text-4xl/[45px] text-[29px]/[36px] left-0 relative "

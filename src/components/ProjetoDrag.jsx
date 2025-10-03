@@ -107,7 +107,7 @@ const ProjetoDrag = () => {
   return (
     <div className="items-center">
       <div className="w-full relative " ref={conRef}>
-        <div className="lg:w-[1110px] w-full min-h-[1650px] overflow-hidden relative">
+        <div className="lg:w-[1110px] w-full lg:min-h-[1650px] min-h-[1600px] overflow-hidden relative">
           <div
             className="absolute cursor-pointer select-none"
             ref={boxRef}

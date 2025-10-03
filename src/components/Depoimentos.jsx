@@ -45,13 +45,13 @@ const Depoimentos = () => {
 
   return (
     <section
-      className={`pt-[100px] pb-[120px] relative bg-cover bg-center bg-fixed`}
+      className="lg:pt-[100px] lg:pb-[120px] pt-[30px] pb-10 relative bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${depoimentosbgImg})` }}
       id="depoimentos"
     >
-      <div className="max-w-[1140px] w-full px-[15px] m-auto z-10 relative">
-        <h2 className="uppercase branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
-          depoimentos <Linha />
+      <div className="max-w-[1140px] w-full px-[15px] m-auto z-10 relative ">
+        <h2 className="uppercase branco lg:text-[28px] text-[22px] font-bold mb-[20px] flex items-center gap-4">
+          depoimentos <Linha ext={"opacity-30"} />
         </h2>
         <div ref={depRef}>
           <DepoimentosDrag
@@ -104,18 +104,18 @@ const Depoimentos = () => {
             ></span>
           </button>
         </div>
-        <div className="z-10" id="clientes">
+        <div className="z-10 lg:block hidden" id="clientes">
           <h2 className="branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
-            CLIENTES <Linha />
+            CLIENTES <Linha ext={"opacity-40"} />
           </h2>
-          <div className="h-fit w-fit overflow-hidden lg:block hidden">
+          <div className="h-fit w-fit overflow-hidden ">
             <div ref={segRef}>
               <SeguradoraDrag />
             </div>
           </div>
-          <div className="mt-[50px] flex justify-center">
-            <SButton txt={"solicitar orçamento"} link={"#contato"} />
-          </div>
+        </div>
+        <div className="lg:mt-[50px] mt-[30px] flex justify-center">
+          <SButton txt={"solicitar orçamento"} link={"#contato"} />
         </div>
       </div>
     </section>

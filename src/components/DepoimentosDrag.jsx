@@ -125,110 +125,119 @@ const DepoimentosDrag = ({ direction, setDirection, setBtnAtv }) => {
   };
 
   useEffect(() => {
-    //cheking if the reference exists
     if (!boxRef.current || !conRef.current) return;
 
     const box = boxRef.current;
     const con = conRef.current;
     const cor = coords.current;
-    const cardWidth = 570;
+    const cardWidth = boxRef.current?.firstElementChild?.offsetWidth + 30 || 0;
 
     const centerBox = () => {
       box.style.left = "0";
     };
     centerBox();
 
-    //when user clicks
-    const onMouseDown = (e) => {
-      //prevent the right mouse button from clicking
-      if (e.button !== 0) return;
-      //fires up the boolean variable that tells if it's clicked
-      isClicked.current = true;
-      //updates the current position of the cube based on the position of the mouse
-      cor.startX = e.clientX;
-
-      // also save the current box position!
-      cor.lastX = box.offsetLeft;
-    };
-
-    //when the user stops clicking
-    const onMouseUp = (e) => {
-      //tells the boolean variable that the click ended
-      isClicked.current = false;
-      //updates the last saved position of the cube based on where the mouse was when released
+    // === Helpers for snapping ===
+    const snapToCard = () => {
       let snapped = Math.round(box.offsetLeft / cardWidth) * cardWidth;
-      // Respect the container boundaries (so it doesn’t slide out of view)
+
       const conW = con.clientWidth;
       const boxW = box.clientWidth;
       const minX = Math.min(0, conW - boxW);
       const maxX = Math.max(0, conW - boxW);
 
-      // Clamp snapped value
       snapped = Math.min(Math.max(snapped, minX), maxX);
 
-      // Move box to snapped position
-      box.style.left = `${snapped}px`;
-
-      // re-enable smooth transition only for snap
       box.style.transition = "left 0.3s ease";
       box.style.left = `${snapped}px`;
 
-      // Update lastX for correct drag math next time
       cor.lastX = snapped;
 
-      handlePositionCheck();
+      handlePositionCheck?.(); // only call if you defined this function
     };
 
-    //when the mouse starts moving
-    const onMouseMove = (e) => {
-      //only matters if the user clicked, so mouse move only counts if also mouse down
-      if (!isClicked.current) return;
-
+    // === Desktop handlers ===
+    const onMouseDown = (e) => {
+      if (e.button !== 0) return;
+      isClicked.current = true;
       box.style.transition = "none";
-      // calculate new position: current mouse delta + last saved box position
+      cor.startX = e.clientX;
+      cor.lastX = box.offsetLeft;
+    };
+
+    const onMouseUp = () => {
+      isClicked.current = false;
+      snapToCard();
+    };
+
+    const onMouseMove = (e) => {
+      if (!isClicked.current) return;
+      box.style.transition = "none";
       const nextX = e.clientX - cor.startX + cor.lastX;
 
       const conW = con.clientWidth;
       const boxW = box.clientWidth;
-      // If box is wider, minX is negative and maxX is 0.
-      // If box is narrower, minX is 0 and maxX is positive.
       const minX = Math.min(0, conW - boxW);
       const maxX = Math.max(0, conW - boxW);
 
-      // clamp value
-      const clampedX = Math.min(Math.max(nextX, minX), maxX);
-
-      // update the box position on screen
-      box.style.left = `${clampedX}px`;
+      box.style.left = `${Math.min(Math.max(nextX, minX), maxX)}px`;
     };
 
-    //adding the events to it's respectivbes boxes
+    // === Mobile handlers ===
+    const onTouchStart = (e) => {
+      isClicked.current = true;
+      box.style.transition = "none";
+      cor.startX = e.touches[0].clientX;
+      cor.lastX = box.offsetLeft;
+    };
+
+    const onTouchEnd = () => {
+      isClicked.current = false;
+      snapToCard();
+    };
+
+    const onTouchMove = (e) => {
+      if (!isClicked.current) return;
+      const nextX = e.touches[0].clientX - cor.startX + cor.lastX;
+
+      const conW = con.clientWidth;
+      const boxW = box.clientWidth;
+      const minX = Math.min(0, conW - boxW);
+      const maxX = Math.max(0, conW - boxW);
+
+      box.style.left = `${Math.min(Math.max(nextX, minX), maxX)}px`;
+    };
+
+    // === Attach events ===
     box.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     con.addEventListener("mousemove", onMouseMove);
 
-    //setting the cleanup of the events of said boxes
-    const cleanup = () => {
+    box.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+    con.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    // === Cleanup ===
+    return () => {
       box.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       con.removeEventListener("mousemove", onMouseMove);
+
+      box.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+      con.removeEventListener("touchmove", onTouchMove);
     };
-    //triggering the cleanup
-    return cleanup;
   }, []);
 
   return (
     <div
-      className="w-full min-h-[284px] overflow-hidden
-      relative items-center flex   
-      mb-[50px] branco  "
+      className="w-full lg:h-[284px] h-[414px] overflow-hidden
+      relative items-center flex mb-[50px] branco"
       ref={conRef}
     >
       <div
-        className="w-[3420px] overflow-hidden min-h-[284px] 
-        absolute top-0 left-0
-        touch-manipulation cursor-grab 
-        select-none gap-[30px] flex flex-row"
+        className="lg:w-[3420px] w-[2484px] overflow-hidden lg:h-[284px] h-[414px] absolute top-0 left-0 touch-manipulation 
+        select-none gap-[30px] flex flex-row cursor-grab"
         ref={boxRef}
         draggable={false}
       >

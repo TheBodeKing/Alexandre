@@ -31,13 +31,13 @@ const Banner = () => {
     });
 
     tl.to(antigo, {
-      x: "100vw",
+      x: "150vw",
       onComplete: () => {
         gsap.set(antigo, { display: "none", zIndex: 0, pointerEvents: "none" });
       },
     });
     gsap.set(novo, { display: dp, zIndex: 100, pointerEvents: "auto" });
-    tl.fromTo(novo, { x: "100vw" }, { x: 0 }, "<");
+    tl.fromTo(novo, { x: "150vw" }, { x: 0 }, "<");
   };
   //função que interrompe/reseta a mudança de tamanho do banner
   const resetScale = () => {
@@ -83,9 +83,9 @@ const Banner = () => {
     if (!prevRef.current) return;
 
     if (ativo > antN) {
-      inOut(prevRef.current, banRef.current[ativo], "-100%", "100%");
+      inOut(prevRef.current, banRef.current[ativo], "-110%", "100%");
     } else {
-      inOut(prevRef.current, banRef.current[ativo], "100%", "-100%");
+      inOut(prevRef.current, banRef.current[ativo], "110%", "-100%");
     }
 
     return () => {
@@ -105,19 +105,19 @@ const Banner = () => {
 
     if (primeiro) {
       gsap.set(txtHRef.current[1], {
-        x: "100vw",
+        x: "150vw",
         display: "none",
         zIndex: 0,
         pointerEvents: "none",
       });
       gsap.set(txtPRef.current[1], {
-        x: "100vw",
+        x: "150vw",
         display: "none",
         zIndex: 0,
         pointerEvents: "none",
       });
       gsap.set(txtARef.current[1], {
-        x: "100vw",
+        x: "150vw",
         display: "none",
         zIndex: 0,
         pointerEvents: "none",
@@ -156,7 +156,7 @@ const Banner = () => {
           </div>
         ))}
       </div>
-      <div className="min-h-[600px] w-full absolute lg:top-0 top-[-130px] left-0 z-10">
+      <div className="min-h-[600px] w-full absolute lg:top-0 top-[-130px] left-0 z-10 overflow-x-hidden">
         <BannerTxt
           txtARef={txtARef}
           txtPRef={txtPRef}

@@ -55,18 +55,19 @@ const Contato = () => {
   });
 
   return (
-    <section className="py-[50px] relative" id="contato">
+    <section className="lg:py-[50px] pt-[30px] pb-[50px] relative" id="contato">
       <div className="max-w-[1140px] relative w-full px-[15px] mx-auto ">
-        <h2 className="uppercase laranja text-[28px] font-bold mb-5 gap-4 items-center flex">
+        <h2 className="uppercase laranja text-[22px] lg:text-[28px] font-bold mb-5 gap-4 items-center flex">
           entre em contato <Linha />
         </h2>
         <p className="mb-4 cinza">
           Estamos prontos e ansiosos para lhe atender. <br /> Preencha o
           formulário ao lado e nos conte sua necessidade.
         </p>
-        <form ref={formRef}>
-          <div className="flex flex-wrap gap-[30px] mb-4">
-            <div className="w-5/12 max-w-5/12">
+        <form ref={formRef} className="lg:p-0 pt-[30px] pb-[50px]">
+          <div className="flex flex-wrap flex-col lg:flex-row gap-[30px] mb-4">
+            {/*  Primeira parte */}
+            <div className="lg:w-5/12 lg:max-w-5/12 w-full">
               <div className="relative mb-4 ">
                 <input
                   className="rounded-sm h-[45px] px-5 w-full bg-white text-black focus:border-[#717477]
@@ -132,7 +133,8 @@ const Contato = () => {
                 </div>
               </div>
             </div>
-            <div className="w-5/12 max-w-5/12">
+            {/*  Segunda parte */}
+            <div className="lg:w-5/12 lg:max-w-5/12 w-full">
               <div className="relative ">
                 <textarea
                   className="rounded-sm h-[133px] py-[10px] px-5 w-full bg-white 
@@ -165,13 +167,15 @@ const Contato = () => {
               </div>
             </div>
           </div>
-          <SButton txt={"Solicitar Orçamento"} />
+          <div className="lg:m-0 -mt-3">
+            <SButton txt={"Solicitar Orçamento"} />
+          </div>
         </form>
 
         <img
           src={homemImg}
           alt="Homem"
-          className="absolute -bottom-3/5 -right-3/20 -z-1"
+          className="absolute -bottom-3/5 -right-3/20 -z-1 lg:block hidden"
           ref={imgRef}
         />
       </div>
