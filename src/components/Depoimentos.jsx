@@ -108,7 +108,7 @@ const Depoimentos = () => {
           <h2 className="branco text-[28px] font-bold mb-[20px] flex items-center gap-4">
             CLIENTES <Linha />
           </h2>
-          <div className="h-fit w-fit overflow-hidden">
+          <div className="h-fit w-fit overflow-hidden lg:block hidden">
             <div ref={segRef}>
               <SeguradoraDrag />
             </div>

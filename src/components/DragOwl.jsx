@@ -104,79 +104,72 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
     };
     centerBox();
 
+    const startDrag = (clientX) => {
+      isClicked.current = true;
+      cor.startX = clientX;
+      cor.lastX = box.offsetLeft;
+      box.style.transition = "none";
+    };
+
+    const endDrag = () => {
+      isClicked.current = false;
+
+      let snapped = Math.round(box.offsetLeft / cardWidth) * cardWidth;
+      const conW = con.clientWidth;
+      const boxW = box.clientWidth;
+      const minX = Math.min(0, conW - boxW);
+      const maxX = Math.max(0, conW - boxW);
+
+      snapped = Math.min(Math.max(snapped, minX), maxX);
+
+      box.style.transition = "left 0.3s ease";
+      box.style.left = `${snapped}px`;
+
+      cor.lastX = snapped;
+
+      const clearTransition = () => {
+        box.style.transition = "";
+        box.removeEventListener("transitionend", clearTransition);
+        handlePositionCheck();
+      };
+      box.addEventListener("transitionend", clearTransition);
+    };
+
+    const moveDrag = (clientX) => {
+      if (!isClicked.current) return;
+
+      const nextX = clientX - cor.startX + cor.lastX;
+
+      const conW = con.clientWidth;
+      const boxW = box.clientWidth;
+      const minX = Math.min(0, conW - boxW);
+      const maxX = Math.max(0, conW - boxW);
+
+      const clampedX = Math.min(Math.max(nextX, minX), maxX);
+      box.style.left = `${clampedX}px`;
+    };
+
     //when user clicks
     const onMouseDown = (e) => {
       //prevent the right mouse button from clicking
       if (e.button !== 0) return;
-      //fires up the boolean variable that tells if it's clicked
-      isClicked.current = true;
-      //updates the current position of the cube based on the position of the mouse
-      cor.startX = e.clientX;
-
-      // also save the current box position!
-      cor.lastX = box.offsetLeft;
-
-      // disable transition while dragging
-      box.style.transition = "none";
+      startDrag(e.clientX);
     };
 
     //when the user stops clicking
-    const onMouseUp = (e) => {
-      //tells the boolean variable that the click ended
-      isClicked.current = false;
 
-      // Round the current offsetLeft to the nearest "card slot"
-      let snapped = Math.round(box.offsetLeft / cardWidth) * cardWidth;
-      // Respect the container boundaries (so it doesn’t slide out of view)
-      const conW = con.clientWidth;
-      const boxW = box.clientWidth;
-      const minX = Math.min(0, conW - boxW);
-      const maxX = Math.max(0, conW - boxW);
+    const onMouseUp = () => endDrag();
+    const onMouseMove = (e) => moveDrag(e.clientX);
 
-      // Clamp snapped value
-      snapped = Math.min(Math.max(snapped, minX), maxX);
-
-      // Move box to snapped position
-      box.style.left = `${snapped}px`;
-
-      // re-enable smooth transition only for snap
-      box.style.transition = "left 0.3s ease";
-      box.style.left = `${snapped}px`;
-
-      // Update lastX for correct drag math next time
-      cor.lastX = snapped;
-
-      const clearTransition = () => {
-        boxRef.current.style.transition = "";
-        boxRef.current.removeEventListener("transitionend", clearTransition);
-
-        //update state once the box has finished moving
-        handlePositionCheck();
-      };
-
-      boxRef.current.addEventListener("transitionend", clearTransition);
+    const onTouchStart = (e) => {
+      if (e.touches.length > 1) return; // ignore multi-touch
+      startDrag(e.touches[0].clientX);
     };
 
-    //when the mouse starts moving
-    const onMouseMove = (e) => {
-      //only matters if the user clicked, so mouse move only counts if also mouse down
+    const onTouchEnd = () => endDrag();
+    const onTouchMove = (e) => {
       if (!isClicked.current) return;
-
-      // calculate new position: current mouse delta + last saved box position
-      const nextX = e.clientX - cor.startX + cor.lastX;
-
-      const conW = con.clientWidth;
-      const boxW = box.clientWidth;
-      // If box is wider, minX is negative and maxX is 0.
-      // If box is narrower, minX is 0 and maxX is positive.
-      const minX = Math.min(0, conW - boxW);
-      const maxX = Math.max(0, conW - boxW);
-
-      // clamp value
-      const clampedX = Math.min(Math.max(nextX, minX), maxX);
-
-      // update the box position on screen
-      box.style.left = `${clampedX}px`;
+      moveDrag(e.touches[0].clientX);
     };
 
     //adding the events to it's respectivbes boxes
@@ -184,11 +177,17 @@ const DragOwl = ({ direction, setDirection, setAtEnd }) => {
     window.addEventListener("mouseup", onMouseUp);
     con.addEventListener("mousemove", onMouseMove);
 
+    box.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd);
+    con.addEventListener("touchmove", onTouchMove, { passive: false });
     //setting the cleanup of the events of said boxes
     const cleanup = () => {
       box.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       con.removeEventListener("mousemove", onMouseMove);
+      box.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+      con.removeEventListener("touchmove", onTouchMove);
     };
     //triggering the cleanup
     return cleanup;

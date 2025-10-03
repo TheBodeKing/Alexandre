@@ -23,6 +23,7 @@ const ProjetoDrag = () => {
   const isClicked = useRef(false);
   const coords = useRef({
     offsetX: 0,
+    startLeft: 0,
   });
 
   useEffect(() => {
@@ -39,55 +40,80 @@ const ProjetoDrag = () => {
 
     centerBox();
 
+    // ===== MOUSE HANDLERS =====
     const onMouseDown = (e) => {
       if (e.button !== 0) return;
       isClicked.current = true;
       box.style.transition = "none";
       cor.offsetX = e.clientX;
-      cor.offsetY = e.clientY;
       cor.startLeft = box.offsetLeft;
-      cor.startTop = box.offsetTop;
     };
 
-    const onMouseUp = (e) => {
+    const onMouseMove = (e) => {
+      if (!isClicked.current) return;
+      const deltaX = (e.clientX - cor.offsetX) * 0.15;
+      box.style.left = `${cor.startLeft + deltaX}px`;
+    };
+
+    const onMouseUp = () => {
+      if (!isClicked.current) return;
       isClicked.current = false;
       box.style.transition = "all 0.5s ease-out";
       centerBox();
     };
 
-    const onMouseMove = (e) => {
-      if (!isClicked.current) return;
-
-      const deltaX = (e.clientX - cor.offsetX) * 0.15;
-
-      const nextX = cor.startLeft + deltaX;
-
-      box.style.left = `${nextX}px`;
+    // ===== TOUCH HANDLERS =====
+    const onTouchStart = (e) => {
+      isClicked.current = true;
+      box.style.transition = "none";
+      cor.offsetX = e.touches[0].clientX;
+      cor.startLeft = box.offsetLeft;
     };
 
+    const onTouchMove = (e) => {
+      if (!isClicked.current) return;
+      const deltaX = (e.touches[0].clientX - cor.offsetX) * 0.15;
+      box.style.left = `${cor.startLeft + deltaX}px`;
+    };
+
+    const onTouchEnd = () => {
+      if (!isClicked.current) return;
+      isClicked.current = false;
+      box.style.transition = "all 0.5s ease-out";
+      centerBox();
+    };
+
+    // ===== ADD LISTENERS =====
     box.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("mousemove", onMouseMove);
 
-    const cleanup = () => {
+    box.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd);
+
+    // ===== CLEANUP =====
+    return () => {
       box.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       window.removeEventListener("mousemove", onMouseMove);
-    };
 
-    return cleanup;
+      box.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
   }, []);
 
   return (
     <div className="items-center">
       <div className="w-full relative " ref={conRef}>
-        <div className="w-[1110px]  min-h-[1650px] overflow-hidden relative">
+        <div className="lg:w-[1110px] w-full min-h-[1650px] overflow-hidden relative">
           <div
-            className="absolute cursor-pointer  select-none"
+            className="absolute cursor-pointer select-none"
             ref={boxRef}
             draggable={false}
           >
-            <div className="py-[20px] px-[10px] gap-[40px] grid grid-cols-3 w-[1110px]">
+            <div className="lg:py-[20px] pb-[10px] lg:px-[10px] lg:gap-10 gap-5 grid lg:grid-cols-3 grid-cols-2 lg:w-[1110px] w-full">
               <ProjetoCard
                 img={alphavilleImg}
                 alt={"alpha"}

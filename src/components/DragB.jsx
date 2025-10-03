@@ -62,7 +62,7 @@ const DragB = ({ img, alt, classImg, classBox }) => {
   }, []);
 
   return (
-    <div className="items-center flex m-auto">
+    <div className="items-center flex lg:m-auto mt-[30px] px-[15px]">
       <div
         className={`${classBox} relative  overflow-hidden m-auto`}
         ref={conRef}

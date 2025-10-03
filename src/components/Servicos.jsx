@@ -32,11 +32,11 @@ const Servicos = () => {
 
   return (
     <section
-      className="py-[50px] block relative w-full min-h-fit"
+      className="lg:py-[50px] lg:pb-0 pb-10 block relative w-full min-h-fit"
       id="servicos"
     >
       <div className="max-w-[1140px] w-full px-[15px] mx-auto ">
-        <h2 className="laranja text-[28px] font-bold mb-5 flex items-center gap-4 ">
+        <h2 className="laranja lg:text-[28px] text-[22px] font-bold mb-5 flex items-center gap-4 ">
           NOSSOS SERVIÇOS <Linha />
         </h2>
         <p className="mb-[20px] cinza">
@@ -84,7 +84,7 @@ const Servicos = () => {
               ></span>
             </button>
           </div>
-          <div className="mt-[50px] flex flex-row justify-center gap-[30px]">
+          <div className="lg:mt-[50px] mt-[30px] flex-wrap items-center flex lg:flex-row flex-col justify-center gap-[30px]">
             <SButton
               txt={"PROJETOS CRIADOS"}
               color={"branco"}
